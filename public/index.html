@@ -3,28 +3,59 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Trang web cho Bài tập 01 môn Công nghệ Web và Dịch vụ trực tuyến." />
-    <title>Bài tập 01 | LamThienTrinh</title>
-    <style>
-      :root { color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      * { box-sizing: border-box; }
-      body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; background: #f3f7fb; color: #17324d; }
-      main { width: min(100%, 680px); padding: clamp(28px, 6vw, 54px); border: 1px solid #dce7f0; border-radius: 24px; background: #fff; box-shadow: 0 20px 60px rgba(24, 57, 89, .08); }
-      .eyebrow { margin: 0 0 16px; color: #2563a6; font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-      h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.12; }
-      p { max-width: 55ch; line-height: 1.65; }
-      .name { margin: 24px 0 8px; font-weight: 700; }
-      a { color: #175ba0; text-underline-offset: 3px; }
-      a:hover { color: #0d3f73; }
-    </style>
+    <meta name="description" content="Kho học liệu và bài tập môn Công nghệ Web và Dịch vụ trực tuyến IT4409." />
+    <title>IT4409 · Học liệu và bài tập</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
   </head>
   <body>
-    <main>
-      <p class="eyebrow">20261 · IT4409</p>
-      <h1>Bài tập 01: Domain, Host, Repo</h1>
-      <p>Trang web mẫu cho môn Công nghệ Web và Dịch vụ trực tuyến.</p>
-      <p class="name">LamThienTrinh</p>
-      <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-">Xem repository trên GitHub</a>
+    <a class="skip-link" href="#main">Đi tới nội dung</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/"><span class="brand-mark">IT</span><span>IT4409<small>Học liệu môn học</small></span></a>
+        <nav class="primary-nav" aria-label="Điều hướng chính">
+          <a href="/" aria-current="page">Tổng quan</a>
+          <details class="nav-group"><summary>Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/">Vercel &amp; tên miền</a></div></details>
+          <details class="nav-group"><summary>Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Các bước làm</a></div></details>
+          <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Công nghệ Web và Dịch vụ trực tuyến · 20261</p>
+            <h1>Học liệu rõ ràng. Bài tập có lộ trình.</h1>
+            <p class="lead">Một nơi để đọc đề, tra cứu tài liệu và theo dõi từng bước thực hiện bài tập môn IT4409.</p>
+            <div class="hero-actions">
+              <a class="button" href="/bai-tap/assignment-01/">Bắt đầu Assignment 01 →</a>
+              <a class="button button-secondary" href="/tai-lieu/">Xem kho tài liệu</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Bài tập hiện có">
+            <div><p class="section-label">Bài tập hiện có</p><h2>Assignment 01</h2></div>
+            <ul><li><span>01</span> Tên miền miễn phí</li><li><span>02</span> Web hosting miễn phí</li><li><span>03</span> Git và GitHub</li></ul>
+            <a href="/tai-lieu/assignment-01/">Đọc đề gốc →</a>
+          </aside>
+        </div>
+      </section>
+      <section class="section-tight">
+        <div class="container">
+          <div class="section-heading"><div><p class="section-label">Lộ trình học</p><h2>Bắt đầu từ đâu?</h2></div><a class="text-link" href="/bai-tap/">Xem bài tập về nhà →</a></div>
+          <div class="card-grid">
+            <article class="card"><span class="card-icon">1</span><h3>Đọc đề gốc</h3><p>Xem PDF của Assignment 01 và xác định đúng ba yêu cầu của bài.</p><a href="/tai-lieu/assignment-01/">Mở tài liệu →</a></article>
+            <article class="card"><span class="card-icon">2</span><h3>Làm theo từng bước</h3><p>Đi từ repository đến hosting, tên miền và kiểm tra kết quả.</p><a href="/bai-tap/assignment-01/">Xem hướng dẫn →</a></article>
+            <article class="card"><span class="card-icon">3</span><h3>Tra cứu khi cần</h3><p>Ghi chú ngắn về GitHub, triển khai Vercel và kết nối DNS.</p><a href="/tai-lieu/">Vào kho tài liệu →</a></article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container feature-strip">
+          <div><p class="section-label">Dự án môn học</p><h2>Trang đang chạy trên Vercel</h2><p class="muted">Mã nguồn lưu trên GitHub. Website đã kết nối tên miền lamthientrinh256.id.vn và mở được qua HTTPS.</p></div>
+          <div class="button-row"><a class="button" href="/bai-tap/assignment-01/">Theo dõi Assignment 01</a><a class="button button-secondary" href="https://www.lamthientrinh256.id.vn/" target="_blank" rel="noopener noreferrer">Xem trang đang chạy ↗</a></div>
+        </div>
+      </section>
     </main>
+    <footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Học liệu và bài tập · LamThienTrinh</p><div class="footer-links"><a href="/tai-lieu/">Tài liệu</a><a href="/bai-tap/">Bài tập về nhà</a><a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-">Mã nguồn ↗</a></div></div></footer>
   </body>
 </html>

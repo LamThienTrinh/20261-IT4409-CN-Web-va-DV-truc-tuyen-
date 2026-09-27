@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hướng dẫn triển khai Vercel và kết nối tên miền riêng." /><title>Vercel và tên miền · IT4409</title><link rel="stylesheet" href="/assets/styles.css" /></head>
+<body>
+<a class="skip-link" href="#main">Đi tới nội dung</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">IT</span><span>IT4409<small>Học liệu môn học</small></span></a><nav class="primary-nav" aria-label="Điều hướng chính"><a href="/">Tổng quan</a><details class="nav-group"><summary aria-current="page">Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/" aria-current="page">Vercel &amp; tên miền</a></div></details><details class="nav-group"><summary>Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Các bước làm</a></div></details><a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
+<main id="main">
+<div class="page-head"><div class="container"><nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/tai-lieu/">Tài liệu</a><span>/</span><span aria-current="page">Vercel và tên miền</span></nav><p class="eyebrow">Ghi chú triển khai</p><h1>Vercel và tên miền</h1><p class="lead">Đưa website tĩnh lên Vercel, sau đó kết nối một tên miền tự đăng ký nếu bài tập yêu cầu.</p></div></div>
+<section class="section"><div class="container content-grid"><div>
+<section class="article-section" id="deploy"><h2>1. Triển khai trang tĩnh</h2><ol class="step-list">
+<li class="step"><h3>Import repository</h3><p>Vào <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer">Vercel New Project ↗</a>, đăng nhập GitHub và chọn repo môn học.</p></li>
+<li class="step"><h3>Kiểm tra cấu hình</h3><p>Chọn Framework Preset <code>Other</code>, Root Directory <code>./</code>, để trống Build Command và dùng thư mục đầu ra <code>public</code>.</p></li>
+<li class="step"><h3>Deploy và mở trang</h3><p>Bấm Deploy. Khi trạng thái là Ready, mở URL <code>*.vercel.app</code> để kiểm tra trang chủ và các mục điều hướng.</p></li>
+</ol><p class="small muted">Tham khảo: <a href="https://vercel.com/docs/git" target="_blank" rel="noopener noreferrer">Deploy từ Git</a> và <a href="https://vercel.com/docs/builds/configure-a-build" target="_blank" rel="noopener noreferrer">cấu hình build</a> của Vercel.</p></section>
+<section class="article-section" id="domain"><h2>2. Kết nối tên miền riêng</h2><p>URL <code>*.vercel.app</code> là địa chỉ Vercel cấp cho bản deploy. Đề Assignment 01 còn có mục đăng ký tên miền miễn phí riêng.</p><ol class="step-list">
+<li class="step"><h3>Đăng ký tên miền</h3><p>Chọn một nhà đăng ký. Đề bài đưa liên kết tham khảo tới P.A Việt Nam và Mắt Bão; xem điều kiện hiện tại trước khi đăng ký.</p></li>
+<li class="step"><h3>Thêm domain vào project</h3><p>Trong Vercel, vào Project → Settings → Domains → Add Domain và nhập tên miền bạn sở hữu.</p></li>
+<li class="step"><h3>Thiết lập DNS</h3><p>Sao chép đúng bản ghi A, CNAME hoặc TXT mà Vercel hiển thị, rồi thêm ở nơi bạn quản lý DNS. Chờ Vercel xác minh và thử mở tên miền qua HTTPS.</p></li>
+</ol><div class="note note-warm"><p>Giá trị DNS có thể khác giữa các project. Hãy dùng giá trị trên dashboard Vercel của chính bạn thay vì chép một IP mẫu từ hướng dẫn khác.</p></div></section>
+<section class="article-section" id="tham-khao"><h2>Liên kết tham khảo</h2><div class="resource-list">
+<div class="resource-item"><div><h3>P.A Việt Nam</h3><p>Trang tên miền miễn phí được dẫn trong đề.</p></div><a href="https://www.pavietnam.vn/vn/tin-tuc-uu-dai-so-huu-mien-phi-ten-mien-id-vn.html" target="_blank" rel="noopener noreferrer">Mở trang ↗</a></div>
+<div class="resource-item"><div><h3>Mắt Bão</h3><p>Trang tên miền miễn phí được dẫn trong đề.</p></div><a href="https://www.matbao.net/ten-mien/ten-mien-mien-phi" target="_blank" rel="noopener noreferrer">Mở trang ↗</a></div>
+<div class="resource-item"><div><h3>Vercel Domains</h3><p>Hướng dẫn thêm domain và cấu hình DNS.</p></div><a href="https://vercel.com/docs/domains/working-with-domains/add-a-domain" target="_blank" rel="noopener noreferrer">Mở docs ↗</a></div>
+</div></section>
+</div><aside class="rail" aria-label="Mục lục trang"><strong>Trong trang này</strong><a href="#deploy">Triển khai Vercel</a><a href="#domain">Kết nối tên miền</a><a href="#tham-khao">Liên kết tham khảo</a><a href="/bai-tap/assignment-01/">Về Assignment 01 →</a></aside></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Học liệu và bài tập · LamThienTrinh</p><div class="footer-links"><a href="/">Tổng quan</a><a href="/tai-lieu/">Tài liệu</a><a href="/bai-tap/">Bài tập về nhà</a></div></div></footer>
+</body></html>

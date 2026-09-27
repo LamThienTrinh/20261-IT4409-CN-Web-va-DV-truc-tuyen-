@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Ghi chú Git và GitHub cho dự án môn IT4409." /><title>Git và GitHub · IT4409</title><link rel="stylesheet" href="/assets/styles.css" /></head>
+<body>
+<a class="skip-link" href="#main">Đi tới nội dung</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">IT</span><span>IT4409<small>Học liệu môn học</small></span></a><nav class="primary-nav" aria-label="Điều hướng chính"><a href="/">Tổng quan</a><details class="nav-group"><summary aria-current="page">Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/" aria-current="page">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/">Vercel &amp; tên miền</a></div></details><details class="nav-group"><summary>Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Các bước làm</a></div></details><a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a></nav></div></header>
+<main id="main">
+<div class="page-head"><div class="container"><nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/tai-lieu/">Tài liệu</a><span>/</span><span aria-current="page">Git và GitHub</span></nav><p class="eyebrow">Ghi chú thực hành</p><h1>Git và GitHub</h1><p class="lead">Các khái niệm và lệnh cần dùng để lưu trang môn học vào repository và cập nhật phiên bản trên GitHub.</p></div></div>
+<section class="section"><div class="container content-grid"><div>
+<section class="article-section" id="khai-niem"><h2>Bốn thứ cần phân biệt</h2><div class="card-grid">
+<article class="card"><span class="card-icon">1</span><h3>Thư mục làm việc</h3><p>File bạn đang sửa trên máy, ví dụ <code>public/index.html</code>.</p></article>
+<article class="card"><span class="card-icon">2</span><h3>Commit</h3><p>Mốc lưu một nhóm thay đổi trong lịch sử Git local.</p></article>
+<article class="card"><span class="card-icon">3</span><h3>Remote</h3><p>Repository GitHub được gắn với tên <code>origin</code>.</p></article>
+</div><p>Danh tính <code>user.name</code> và <code>user.email</code> xuất hiện trên commit. Việc đăng nhập GitHub để <code>push</code> là bước xác thực riêng.</p></section>
+<section class="article-section" id="quy-trinh"><h2>Quy trình cập nhật website</h2><p>Repository môn học đã được khởi tạo. Mỗi lần sửa tài liệu hoặc bài tập, dùng các lệnh sau trong thư mục dự án:</p>
+<pre><code>git status
+git add public/
+git commit -m "Cap nhat hoc lieu"
+git push origin main</code></pre>
+<p><code>git add public/</code> chỉ đưa nội dung website vào commit. Hãy xem <code>git status</code> trước khi commit để biết chính xác file nào sẽ được đẩy lên.</p></section>
+<section class="article-section" id="kiem-tra"><h2>Kiểm tra kết quả</h2><ul><li>Mở <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">repository môn học trên GitHub</a> và xem commit mới trên nhánh <code>main</code>.</li><li>Sau khi GitHub nhận commit, project Vercel kết nối với repo sẽ tạo bản deploy mới.</li><li>Mở website để kiểm tra nội dung hiển thị đúng.</li></ul><div class="note"><p>Trang này là ghi chú thực hành cho dự án. Tài liệu chính thức: <a href="https://docs.github.com/en/get-started/start-your-journey/what-is-github" target="_blank" rel="noopener noreferrer">GitHub Docs ↗</a>.</p></div></section>
+</div><aside class="rail" aria-label="Mục lục trang"><strong>Trong trang này</strong><a href="#khai-niem">Các khái niệm</a><a href="#quy-trinh">Cập nhật website</a><a href="#kiem-tra">Kiểm tra kết quả</a><a href="/bai-tap/assignment-01/">Về Assignment 01 →</a></aside></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Học liệu và bài tập · LamThienTrinh</p><div class="footer-links"><a href="/">Tổng quan</a><a href="/tai-lieu/">Tài liệu</a><a href="/bai-tap/">Bài tập về nhà</a></div></div></footer>
+</body></html>
