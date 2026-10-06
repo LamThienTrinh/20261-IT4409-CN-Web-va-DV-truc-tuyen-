@@ -98,6 +98,7 @@ p { line-height: 1.7; }
 .rail a { display: block; padding: 8px 0; color: var(--muted); font-size: .86rem; text-decoration: none; }
 .rail a:hover { color: var(--accent-dark); }
 .article-section { scroll-margin-top: 104px; margin-bottom: 45px; }
+.section-spaced { margin-top: 20px; }
 .article-section h2 { margin-bottom: 14px; font-size: 1.8rem; }
 .article-section > p:first-of-type { margin-top: 0; }
 .article-section ul { padding-left: 22px; line-height: 1.75; }

@@ -45,14 +45,3 @@ Bảo vệ các đoạn đang đúng: `position: sticky; top: 0; z-index: 100`, 
 **Target:** Chỉ thay đổi tối thiểu ba lỗi thật; menu sticky, card và badge hoạt động đúng; không làm mất các kỹ thuật CSS vốn hợp lệ.
 
 Link sau khi deploy: `https://www.lamthientrinh256.id.vn/bai-tap/assignment-03/bai-2/trang.html`
-
-## Bảng nộp
-
-- Bảng nộp: <https://docs.google.com/spreadsheets/d/1LAMcdidHEfBITJ023MLw5ksllhf9SgwBMoPtUQF6TVQ/edit?usp=drive_link>
-- Họ tên: Trịnh Thiên Lam
-- MSSV: 20235359
-- Ngày sinh: 25/06/2005
-- Phần tự chẩn đoán: dùng mục Bài 1
-- Link Bài 1: dùng URL `/assignment-03/bai-1/trang.html`
-- Prompt AI: dùng mục Bài 2
-- Link Bài 2: dùng URL `/assignment-03/bai-2/trang.html`
