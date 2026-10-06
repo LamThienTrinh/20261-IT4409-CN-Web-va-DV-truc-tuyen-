@@ -1,16 +1,16 @@
 /* =====================================================================
    Blakletterpress — Trang khuyến mãi thiệp Tết 2026
-   HOẠT ĐỘNG 2 — CSS cho phần DÙNG GenAI (chủ đề: Box model + Position).
+   HOẠT ĐỘNG 1 — CSS ĐÃ CÀI LỖI (chủ đề: Box model + Position).
 
-   Khác với Hoạt động 1, ở đây trang trông GẦN NHƯ đúng: nhìn lướt qua thấy
-   ổn, nhưng vẫn còn MỘT VÀI LỖI TINH VI về box model / position mà bạn phải
-   phát hiện qua quan sát kỹ + DevTools (ví dụ: cuộn trang để kiểm tra menu,
-   xem nhãn "-20%" có đủ trên mọi thẻ không, thu hẹp cửa sổ xem thẻ có bị
-   rớt hàng không).
+   Trang này đáng lẽ hiển thị như sau:
+   - Thanh menu trên cùng DÍNH lại khi cuộn (sticky) và luôn nằm trên ảnh.
+   - Ảnh hero phủ kín khung, chữ tiêu đề nằm CHÍNH GIỮA ảnh.
+   - Ba thẻ sản phẩm xếp thành MỘT HÀNG, mỗi thẻ có nhãn "-20%" ở GÓC TRÊN
+     BÊN PHẢI của chính thẻ đó; ảnh và chữ nằm gọn trong thẻ.
+   - Nút "↑" nổi cố định ở GÓC DƯỚI BÊN PHẢI màn hình khi cuộn.
 
-   QUAN TRỌNG: trong file này CŨNG có những đoạn code TRÔNG "thừa/lạ" nhưng
-   thực ra ĐANG ĐÚNG và CẦN THIẾT. AI hay "sửa nhầm" chúng. Nhiệm vụ của bạn
-   là chỉ sửa lỗi thật và BẢO VỆ những đoạn đúng (xem yêu cầu trong de-bai.md).
+   Hiện tại bố cục đang VỠ. Nhiệm vụ của bạn (KHÔNG dùng AI): tìm và sửa
+   các lỗi box model / position để trang hiển thị đúng như mô tả trên.
    ===================================================================== */
 
 * {
@@ -28,10 +28,6 @@ body {
 
 a {
 	color: inherit;
-}
-
-.page {
-	overflow-x: clip;
 }
 
 /* ===== Header / thanh điều hướng ===== */
@@ -84,7 +80,6 @@ a {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	transform: scale(1.08);
 }
 
 .hero-overlay {
@@ -97,6 +92,7 @@ a {
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+	z-index: 5;
 }
 
 .hero-overlay h1 {
@@ -121,12 +117,8 @@ a {
 /* ===== Khu sản phẩm ===== */
 .products {
 	max-width: 1000px;
-	margin: -48px auto 48px;
-	padding: 24px 24px 0;
-	position: relative;
-	z-index: 1;
-	background: #f4f1ea;
-	border-radius: 16px 16px 0 0;
+	margin: 48px auto;
+	padding: 0 24px;
 }
 
 .products h2 {
@@ -144,7 +136,6 @@ a {
 	flex: 0 0 calc((100% - 48px) / 3);
 	min-height: 320px;
 	position: relative;
-	box-sizing: border-box;
 	background: #fff;
 	border: 1px solid #e0d8c8;
 	border-radius: 8px;
@@ -156,7 +147,6 @@ a {
 	position: absolute;
 	top: 12px;
 	right: 12px;
-	z-index: 3;
 	background: #c0392b;
 	color: #fff;
 	font-size: 14px;
@@ -171,8 +161,6 @@ a {
 	height: 180px;
 	object-fit: cover;
 	border-radius: 4px;
-	position: relative;
-	z-index: 2;
 }
 
 .card-body h3 {
@@ -211,6 +199,7 @@ a {
 
 /* ===== Footer ===== */
 .site-footer {
+	margin-top: 48px;
 	padding: 32px 24px;
 	background: #2b2b2b;
 	color: #cfcfcf;

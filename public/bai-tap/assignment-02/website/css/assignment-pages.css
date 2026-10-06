@@ -1,0 +1,118 @@
+.assignment-body {
+	padding: 8px 30px 30px;
+}
+
+.assignment-body h1 {
+	margin-bottom: 18px;
+}
+
+.assignment-body .intro {
+	padding-bottom: 20px;
+}
+
+.assignment-body fieldset {
+	margin: 0 0 18px;
+	padding: 18px;
+	border: 1px solid #d6ae6a;
+	background: #fffaf0;
+}
+
+.assignment-body legend {
+	padding: 0 8px;
+	color: #7e501c;
+	font-weight: bold;
+}
+
+.form-row {
+	margin-bottom: 15px;
+}
+
+.form-row > label,
+.form-row > span {
+	display: block;
+	margin-bottom: 6px;
+	color: #300302;
+	font-weight: bold;
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="password"],
+.form-row input[type="tel"],
+.form-row input[type="date"],
+.form-row select,
+.form-row textarea {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 8px 10px;
+	border: 1px solid #c9b07d;
+	background: #fff;
+	font: inherit;
+}
+
+.form-row textarea {
+	min-height: 96px;
+	resize: vertical;
+}
+
+.inline-options label {
+	display: inline-block;
+	margin: 0 16px 6px 0;
+}
+
+.form-actions {
+	display: flex;
+	gap: 10px;
+}
+
+.assignment-link {
+	display: inline-block;
+	margin-top: 16px;
+	color: #7e501c;
+	font-weight: bold;
+}
+
+.media-article section {
+	margin-bottom: 28px;
+}
+
+.media-article figure {
+	margin: 0 0 18px;
+}
+
+.media-article figure img,
+.media-article video,
+.media-article iframe {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 540px;
+	margin: 0 auto;
+}
+
+.media-article figure img {
+	height: 300px;
+	object-fit: cover;
+}
+
+.media-article figcaption {
+	max-width: 540px;
+	margin: 7px auto 0;
+	color: #7e501c;
+	font-size: 13px;
+}
+
+.media-article video {
+	min-height: 260px;
+	background: #1f1b18;
+}
+
+.media-article audio {
+	width: 100%;
+	max-width: 420px;
+}
+
+.media-article iframe {
+	height: 300px;
+	border: 0;
+}
