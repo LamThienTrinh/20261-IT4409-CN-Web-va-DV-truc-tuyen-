@@ -5,7 +5,6 @@
 - Họ và tên: Trịnh Thiên Lam
 - MSSV: 20235359
 - Ngày sinh: 25/06/2005
-- Giới tính, email và lớp: chưa được cung cấp
 
 ## 1. Kết quả phát hiện lỗi trong `news_wrong.html`
 
@@ -97,17 +96,3 @@ Trang mới giữ khung cũ và sử dụng `main`, `article`, `section`, `figur
 **Target:** Giao diện không thay đổi so với `index.html`; mã đóng/mở thẻ hợp lệ và cấu trúc semantic rõ hơn.
 
 - Kết quả: `https://www.lamthientrinh256.id.vn/bai-tap/assignment-02/website/index_new.html`
-
-## Dữ liệu điền vào bảng nộp
-
-- Họ tên: Trịnh Thiên Lam
-- MSSV: 20235359
-- Ngày sinh: 25/06/2005
-- Kết quả phần tìm lỗi: dùng mục 1
-- Prompt sửa `blog_wrong.html`: dùng mục 2
-- Link register: dùng link ở mục 3
-- Link media: dùng link ở mục 4
-- Prompt semantic và link `index_new.html`: dùng mục 5
-- Bảng nộp: <https://docs.google.com/spreadsheets/d/1LAMcdidHEfBITJ023MLw5ksllhf9SgwBMoPtUQF6TVQ/edit?usp=drive_link>
-
-Không điền giới tính, email hoặc lớp bằng dữ liệu suy đoán.
