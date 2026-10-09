@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Assignment 04: xây dựng CSS responsive cho trang giới thiệu Blakletterpress mà không thay đổi HTML gốc.">
+  <title>Assignment 04 · Responsive CSS · IT4409</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Đi tới nội dung</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/"><span class="brand-mark">IT</span><span>IT4409<small>Học liệu môn học</small></span></a>
+      <nav class="primary-nav" aria-label="Điều hướng chính">
+        <a href="/">Tổng quan</a>
+        <details class="nav-group"><summary>Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/">Vercel &amp; tên miền</a></div></details>
+        <details class="nav-group"><summary aria-current="page">Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Domain, host, repo</a><a href="/bai-tap/assignment-02/">Assignment 02 · HTML5</a><a href="/bai-tap/assignment-03/">Assignment 03 · CSS</a><a href="/bai-tap/assignment-04/" aria-current="page">Assignment 04 · Responsive CSS</a></div></details>
+        <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/bai-tap/">Bài tập về nhà</a><span>/</span><span aria-current="page">Assignment 04</span></nav>
+        <p class="eyebrow">Bài tập về nhà · 04</p>
+        <h1>Thiết kế CSS responsive</h1>
+        <p class="lead">Hoàn thiện giao diện cho trang giới thiệu Blakletterpress bằng CSS, giữ nguyên cấu trúc HTML được cung cấp và bảo đảm trải nghiệm tốt trên desktop, tablet, mobile.</p>
+        <div class="button-row"><a class="button" href="/bai-tap/assignment-04/bai-1/trang-goc.html" target="_blank" rel="noopener noreferrer">Mở bài làm ↗</a><a class="button button-secondary" href="#ket-qua">Xem trực tiếp</a></div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container content-grid">
+        <div>
+          <section class="article-section" id="tong-quan">
+            <p class="section-label">01 · Yêu cầu</p>
+            <h2>Giữ HTML, xây dựng toàn bộ phần trình bày</h2>
+            <div class="card-grid section-spaced">
+              <article class="card"><span class="card-icon">HTML</span><h3>Không thay đổi mã nguồn</h3><p>Trang chạy từ bản sao nguyên vẹn của <code>trang-goc.html</code>; toàn bộ bố cục được điều khiển qua <code>style.css</code>.</p></article>
+              <article class="card"><span class="card-icon">CSS</span><h3>Thiết kế có chủ đích</h3><p>Phong cách editorial lấy cảm hứng từ giấy, mực in và không gian xưởng thủ công.</p></article>
+              <article class="card"><span class="card-icon">RWD</span><h3>Responsive hoàn chỉnh</h3><p>Lưới nội dung, sidebar, menu, biểu mẫu và footer tự thích ứng theo chiều rộng màn hình.</p></article>
+            </div>
+          </section>
+          <section class="article-section" id="ket-qua">
+            <p class="section-label">02 · Kết quả</p>
+            <h2>Bản xem trước bài làm</h2>
+            <p>Thay đổi chiều rộng cửa sổ hoặc mở bài làm trong tab mới để kiểm tra các mốc responsive.</p>
+            <div class="preview-shell section-spaced">
+              <div class="preview-toolbar"><span>Blakletterpress · Responsive</span><a href="/bai-tap/assignment-04/bai-1/trang-goc.html" target="_blank" rel="noopener noreferrer">Mở tab mới ↗</a></div>
+              <iframe class="assignment-preview" src="/bai-tap/assignment-04/bai-1/trang-goc.html" title="Kết quả Assignment 04 responsive" loading="lazy"></iframe>
+            </div>
+          </section>
+          <section class="article-section" id="responsive">
+            <p class="section-label">03 · Responsive</p>
+            <h2>Cách bố cục thích ứng</h2>
+            <ol class="step-list">
+              <li class="step"><h3>Desktop</h3><p>Nội dung chính và sidebar hiển thị song song; phần giới thiệu, giá trị cốt lõi, đội ngũ và footer sử dụng lưới nhiều cột.</p></li>
+              <li class="step"><h3>Tablet</h3><p>Sidebar chuyển xuống dưới nội dung, thanh điều hướng tự xuống dòng và các khoảng cách được thu gọn.</p></li>
+              <li class="step"><h3>Mobile</h3><p>Mọi khối chuyển về một cột, menu thành lưới nút dễ chạm, biểu mẫu và hình ảnh luôn nằm trong màn hình.</p></li>
+            </ol>
+          </section>
+        </div>
+        <aside class="rail" aria-label="Mục lục Assignment 04"><strong>Trong Assignment 04</strong><a href="#tong-quan">Yêu cầu</a><a href="#ket-qua">Kết quả</a><a href="#responsive">Responsive</a><a href="/bai-tap/assignment-04/bai-1/trang-goc.html" target="_blank" rel="noopener noreferrer">Mở bài làm ↗</a><a href="/bai-tap/">Các bài tập →</a></aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Trịnh Thiên Lam · 20235359</p><div class="footer-links"><a href="/">Tổng quan</a><a href="/bai-tap/assignment-03/">Assignment 03</a><a href="/bai-tap/">Bài tập về nhà</a></div></div></footer>
+</body>
+</html>
