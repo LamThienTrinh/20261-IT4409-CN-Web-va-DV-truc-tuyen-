@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bài 4 buổi 4 môn IT4409: JavaScript lập phiếu báo giá và phiếu xác nhận đơn in Blakletterpress.">
+  <title>Bài 4 · Buổi 4 · JavaScript · IT4409</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="assignment.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Đi tới nội dung</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="L — Trang chủ IT4409"><span class="brand-mark">L</span><span>IT4409<small>Học liệu môn học</small></span></a>
+      <nav class="primary-nav" aria-label="Điều hướng chính">
+        <a href="/">Tổng quan</a>
+        <details class="nav-group"><summary>Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/">Vercel &amp; tên miền</a></div></details>
+        <details class="nav-group"><summary aria-current="page">Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Domain, host, repo</a><a href="/bai-tap/assignment-02/">Assignment 02 · HTML5</a><a href="/bai-tap/assignment-03/">Assignment 03 · CSS</a><a href="/bai-tap/assignment-04/">Assignment 04 · Responsive CSS</a><a href="/bai-tap/asignment4-baisau/" aria-current="page">Bài 4 · Buổi 4 · JavaScript</a></div></details>
+        <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/bai-tap/">Bài tập về nhà</a><span>/</span><span aria-current="page">Bài 4 · Buổi 4</span></nav>
+        <p class="eyebrow">Bài 4 · Buổi 4</p>
+        <h1>JavaScript cho xưởng in</h1>
+        <p class="lead">Hoàn thiện phiếu báo giá in thiệp và phiếu xác nhận đơn in của Blakletterpress: xử lý dữ liệu từ form, tính VAT, tạo chuỗi nhiều dòng và sao chép đơn in lại.</p>
+        <div class="button-row"><a class="button" href="bai-1/index.html">Chạy bài 1a →</a><a class="button button-secondary" href="bai-1/about.html">Chạy bài 1b và 12 kiểm tra →</a></div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container content-grid">
+        <div>
+          <section class="article-section" id="bai-1a">
+            <p class="section-label">1a · Phiếu báo giá</p>
+            <h2>Điền 19 chỗ trống</h2>
+            <p>Các đáp án bao gồm từ khóa, toán tử, ký hiệu và kết quả của những lệnh JavaScript trong đề. Ô 16 dùng cùng một dấu backtick ở đầu và cuối template literal.</p>
+            <div class="table-wrap">
+              <table class="answer-table">
+                <caption class="small">Đáp án bài 1a và ý nghĩa</caption>
+                <thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Giải thích</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td><code>const</code></td><td>Tên xưởng không được gán lại.</td></tr>
+                  <tr><td>2</td><td><code>let</code></td><td>Số lượng có thể cập nhật; biến có phạm vi khối.</td></tr>
+                  <tr><td>3</td><td><code>"300200"</code></td><td>Phép cộng với chuỗi thực hiện nối chuỗi; Console hiển thị 300200.</td></tr>
+                  <tr><td>4</td><td><code>true</code></td><td><code>==</code> chuyển đổi kiểu khi so sánh chuỗi số với số.</td></tr>
+                  <tr><td>5</td><td><code>false</code></td><td><code>===</code> yêu cầu cùng kiểu dữ liệu.</td></tr>
+                  <tr><td>6</td><td><code>let</code></td><td>Khai báo ngoài khối <code>if</code> để cập nhật trong khối và dùng sau đó.</td></tr>
+                  <tr><td>7</td><td><code>ReferenceError</code></td><td><code>lyDo</code> chỉ tồn tại trong khối <code>if</code>.</td></tr>
+                  <tr><td>8</td><td><code>undefined</code></td><td>Biến <code>var</code> được hoist; phép gán chưa thực hiện.</td></tr>
+                  <tr><td>9</td><td><code>ReferenceError</code></td><td>Đọc biến <code>let</code> trước khi khởi tạo nằm trong temporal dead zone.</td></tr>
+                  <tr><td>10</td><td><code>==</code></td><td><code>ghiChu == null</code> đúng với null và undefined, sai với chuỗi rỗng và 0.</td></tr>
+                  <tr><td>11</td><td><code>500</code></td><td>Hai biến tham chiếu cùng một object.</td></tr>
+                  <tr><td>12</td><td><code>true</code></td><td><code>donMau</code> và <code>donKhach</code> có cùng tham chiếu.</td></tr>
+                  <tr><td>13</td><td>B · <code>TypeError</code></td><td>Được sửa thuộc tính object nhưng không được gán lại biến <code>const</code>.</td></tr>
+                  <tr><td>14</td><td><code>{</code></td><td>Mở object ngay trên dòng <code>return</code>.</td></tr>
+                  <tr><td>15</td><td><code>undefined</code></td><td>ASI chèn dấu chấm phẩy ngay sau <code>return</code> nếu xuống dòng trước biểu thức.</td></tr>
+                  <tr><td>16</td><td><code>`</code></td><td>Dấu backtick mở và đóng template literal.</td></tr>
+                  <tr><td>17</td><td><code>${soLuong}</code></td><td>Nội suy số lượng đã chuyển sang số và cập nhật.</td></tr>
+                  <tr><td>18</td><td><code>log</code></td><td>In thông tin bằng <code>console.log</code>.</td></tr>
+                  <tr><td>19</td><td><code>table</code></td><td>In mảng object thành bảng bằng <code>console.table</code>.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="small">Lưu ý ô 15: ASI chèn dấu chấm phẩy sau <code>return</code> và một hàm hợp lệ sẽ trả về undefined. Nếu chỉ xuống dòng trong nguyên object nhiều thuộc tính của đề, các dấu phẩy và dấu hai chấm tiếp theo khiến mã báo SyntaxError trước khi hàm chạy; vì vậy bản hoàn thiện luôn đặt <code>{</code> cùng dòng với <code>return</code>.</p>
+            <div class="source-links"><a href="bai-1/index.html">Xem kết quả chạy bài 1a →</a><a href="bai-1/js/bai-a-bao-gia.js" download>Tải mã JavaScript bài 1a</a></div>
+            <h3>Phiếu báo giá</h3>
+            <pre>=== Blakletterpress ===
+Số lượng : 500 thiệp
+Tạm tính : 600000 đ
+Giảm giá : 60000 đ (10 %)
+VAT      : 54000 đ
+Tổng     : 594000 đ
+Ghi chú  : (không có)</pre>
+            <p>Tạm tính bằng 500 × 1200. Giảm 10% còn 540000 đ; VAT 10% của số tiền sau giảm là 54000 đ. Tổng thanh toán bằng 594000 đ.</p>
+          </section>
+          <section class="article-section" id="bai-1b">
+            <p class="section-label">1b · Phiếu xác nhận đơn in</p>
+            <h2>Bốn hàm xử lý đơn</h2>
+            <ol class="step-list">
+              <li class="step"><h3><code>tinhTong</code></h3><p>Chuyển cả ba tham số bằng <code>Number()</code>; lấy số lượng × đơn giá, cộng VAT rồi cộng phí giao. Cả tham số số và chuỗi số đều trả về number.</p></li>
+              <li class="step"><h3><code>moTaInLai</code></h3><p>null hoặc undefined trả về “Chưa rõ”; 0 trả về “In lần đầu”; số dương trả về “In lại lần n”.</p></li>
+              <li class="step"><h3><code>inPhieu</code></h3><p>Dùng template literal tạo đúng 5 dòng, lấy tên xưởng in hoa và gọi hai hàm tính tổng, mô tả in lại. Chuỗi không có dòng trống ở đầu hoặc cuối.</p></li>
+              <li class="step"><h3><code>taoDonInLai</code></h3><p>Tạo object đơn mới và object <code>khach</code> mới bằng spread, cập nhật số điện thoại và tăng số lần in. Dữ liệu đã cho gồm một object lồng là <code>khach</code>; bản sao này giữ đơn cũ độc lập khi sửa khách hàng.</p></li>
+            </ol>
+            <div class="source-links"><a href="bai-1/about.html">Chạy bài 1b và bộ kiểm tra →</a><a href="bai-1/js/bai-b-phieu-in.js" download>Tải mã JavaScript bài 1b</a></div>
+            <h3>Đơn gốc và đơn in lại</h3>
+            <div class="result-pair">
+              <pre>=== BLAKLETTERPRESS ===
+Mã đơn : BL-001
+Khách  : Nguyễn An (0901234567)
+Tổng   : 442500 đ
+Ghi chú: In lần đầu</pre>
+              <pre>=== BLAKLETTERPRESS ===
+Mã đơn : BL-001
+Khách  : Nguyễn An (0988888888)
+Tổng   : 442500 đ
+Ghi chú: In lại lần 1</pre>
+            </div>
+          </section>
+          <section class="article-section" id="kiem-tra">
+            <p class="section-label">Kiểm chứng</p>
+            <h2>Bộ kiểm tra gốc T1 đến T12</h2>
+            <p>Trang bài 1b thực thi trực tiếp <code>kiem-tra.js</code> được cung cấp. Kết quả chạy đạt <strong>12/12</strong>; từng kiểm tra được in trong khung “Kết quả” và Console.</p>
+            <div class="card-grid">
+              <article class="card"><span class="card-icon">T1–4</span><h3>Tổng tiền</h3><p>Nhận number, nhận chuỗi số, giữ kiểu number và tính đúng VAT.</p></article>
+              <article class="card"><span class="card-icon">T5–8</span><h3>Chuỗi kết quả</h3><p>Phân biệt lần đầu, in lại, chưa rõ và kiểm tra phiếu đúng từng ký tự.</p></article>
+              <article class="card"><span class="card-icon">T9–12</span><h3>Bảo toàn đơn cũ</h3><p>Trả về object mới, đổi số điện thoại, tăng lần in và tách object khách hàng.</p></article>
+            </div>
+            <div class="source-links"><a href="bai-1/js/kiem-tra.js">Xem bộ kiểm tra gốc</a><a href="bai-1/js/ho-tro.js">Xem hàm hỗ trợ gốc</a></div>
+          </section>
+          <section class="article-section" id="nap-script">
+            <p class="section-label">Thứ tự thực thi</p>
+            <h2>Nạp JavaScript cuối body</h2>
+            <p>Ở <code>index.html</code>, thứ tự là <code>ho-tro.js → bai-a-bao-gia.js</code>. Ở <code>about.html</code>, thứ tự là <code>ho-tro.js → bai-b-phieu-in.js → kiem-tra.js</code>. Khi chạy mã bài tập, khung kết quả đã có trong DOM, hàm <code>hienThi</code> đã sẵn sàng; khi chạy bộ kiểm tra, bốn hàm bài B đã được khai báo.</p>
+            <p>Bài A và bài B chạy ở hai trang riêng để các khai báo <code>const TEN_XUONG</code> và <code>const VAT_PHAN_TRAM</code> có phạm vi toàn cục độc lập.</p>
+          </section>
+        </div>
+        <aside class="rail" aria-label="Mục lục Bài 4 Buổi 4"><strong>Bài 4 · Buổi 4</strong><a href="#bai-1a">1a · 19 đáp án</a><a href="#bai-1b">1b · Bốn hàm</a><a href="#kiem-tra">12 kiểm tra</a><a href="#nap-script">Thứ tự nạp script</a><a href="bai-1/index.html">Chạy bài 1a →</a><a href="bai-1/about.html">Chạy bài 1b →</a></aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Trịnh Thiên Lam · 20235359</p><div class="footer-links"><a href="/">Tổng quan</a><a href="/bai-tap/assignment-04/">Assignment 04 · CSS</a><a href="/bai-tap/">Bài tập về nhà</a></div></div></footer>
+</body>
+</html>
