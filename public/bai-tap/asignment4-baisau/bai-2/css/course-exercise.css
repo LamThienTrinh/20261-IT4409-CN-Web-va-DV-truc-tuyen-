@@ -1,0 +1,46 @@
+/* Giữ giao diện Blakletterpress; bổ sung cách xuống dòng trên màn hình nhỏ. */
+#ket-qua { overflow-wrap: anywhere; }
+@media (max-width: 980px) {
+  #page, #footer > div { width: calc(100% - 32px); }
+  #contents { display: flex; flex-direction: column; background: none; }
+  #main, #sidebar { float: none; box-sizing: border-box; width: 100%; margin: 0; }
+  #main { min-height: 0; }
+  #main div.body { padding: 0 16px; }
+  #sidebar { margin-top: 24px; }
+  #gallery img { max-width: 100%; height: auto; }
+  #gallery ul { box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: center; width: 100%; padding: 6px; }
+  #gallery ul li { float: none; margin: 6px; }
+  #navigation { width: 229px; margin: 0 auto 16px; }
+  #connect, #posts { max-width: 420px; margin-inline: auto; }
+  #footer { position: static; margin-top: 24px; }
+  #featured { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  #featured li { float: none; width: auto; margin: 0; }
+  #footnote { box-sizing: border-box; width: 100%; }
+  #logo { left: calc(50% - 82px); }
+}
+@media (max-width: 600px) {
+  #page, #footer > div { width: calc(100% - 24px); }
+  #header { height: auto; padding: 64px 0 20px; }
+  #motto { padding: 0; text-align: center; }
+  a.sitename { float: none; margin-left: 0; }
+  #motto p { display: block; margin: 12px 0; }
+  #logo { position: static; margin: 8px 0 16px; }
+  #searchbar { padding: 0; text-align: center; }
+  #main div.body { padding: 0 4px; }
+  #contents h1 { font-size: 26px; text-align: left; }
+  #contents p { text-align: left; }
+  #featured { grid-template-columns: 1fr; }
+}
+
+/* Bài 2 yêu cầu giỏ hàng ở cột bên phải trên màn hình lớn. */
+@media (min-width: 981px) {
+  #main { float: left; margin: 0 12px 0 5px; }
+  #sidebar { float: right; margin-left: 0; margin-right: 24px; }
+}
+#posts h5 { color: #4b2d0b; font-weight: bold; }
+#posts p { color: #5c3b10; }
+#gio-hang > li:last-child { font-weight: bold; color: #4b2d0b; }
+@media (max-width: 600px) {
+  #list span.time { float: none; display: block; margin: 0 0 8px; }
+  #pagination { line-height: 2; }
+}

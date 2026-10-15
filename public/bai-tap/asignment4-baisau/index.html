@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Bài 4 buổi 4 môn IT4409: JavaScript lập phiếu báo giá và phiếu xác nhận đơn in Blakletterpress.">
+  <meta name="description" content="Bài 4 buổi 4 môn IT4409: JavaScript lập phiếu, xử lý JSON, giỏ hàng, thư viện ảnh và lọc đăng tin Blakletterpress.">
   <title>Bài 4 · Buổi 4 · JavaScript · IT4409</title>
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="stylesheet" href="assignment.css">
@@ -27,13 +27,18 @@
         <nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/bai-tap/">Bài tập về nhà</a><span>/</span><span aria-current="page">Bài 4 · Buổi 4</span></nav>
         <p class="eyebrow">Bài 4 · Buổi 4</p>
         <h1>JavaScript cho xưởng in</h1>
-        <p class="lead">Hoàn thiện phiếu báo giá in thiệp và phiếu xác nhận đơn in của Blakletterpress: xử lý dữ liệu từ form, tính VAT, tạo chuỗi nhiều dòng và sao chép đơn in lại.</p>
-        <div class="button-row"><a class="button" href="bai-1/index.html">Chạy bài 1a →</a><a class="button button-secondary" href="bai-1/about.html">Chạy bài 1b và 12 kiểm tra →</a></div>
+        <p class="lead">Ba bài JavaScript của Blakletterpress: lập phiếu báo giá và xác nhận đơn in, xử lý tin tức và giỏ hàng từ JSON, tương tác thư viện ảnh và đăng tin nhanh bằng DOM.</p>
+        <div class="button-row"><a class="button" href="#bai-2">Bài 2 · Tin tức và giỏ hàng →</a><a class="button button-secondary" href="#bai-3">Bài 3 · Thư viện ảnh và tin nhanh →</a><a class="button button-secondary" href="#bai-1a">Bài 1 · Phiếu in</a></div>
       </div>
     </div>
     <section class="section">
       <div class="container content-grid">
         <div>
+          <nav class="exercise-jump article-section" aria-label="Ba bài thực hành JavaScript">
+            <a href="#bai-1a"><strong>Bài 1</strong><span>Phiếu báo giá và đơn in</span></a>
+            <a href="#bai-2"><strong>Bài 2</strong><span>Tin tức JSON và giỏ hàng</span></a>
+            <a href="#bai-3"><strong>Bài 3</strong><span>Thư viện ảnh và tin nhanh</span></a>
+          </nav>
           <section class="article-section" id="bai-1a">
             <p class="section-label">1a · Phiếu báo giá</p>
             <h2>Điền 19 chỗ trống</h2>
@@ -118,8 +123,62 @@ Ghi chú: In lại lần 1</pre>
             <p>Ở <code>index.html</code>, thứ tự là <code>ho-tro.js → bai-a-bao-gia.js</code>. Ở <code>about.html</code>, thứ tự là <code>ho-tro.js → bai-b-phieu-in.js → kiem-tra.js</code>. Khi chạy mã bài tập, khung kết quả đã có trong DOM, hàm <code>hienThi</code> đã sẵn sàng; khi chạy bộ kiểm tra, bốn hàm bài B đã được khai báo.</p>
             <p>Bài A và bài B chạy ở hai trang riêng để các khai báo <code>const TEN_XUONG</code> và <code>const VAT_PHAN_TRAM</code> có phạm vi toàn cục độc lập.</p>
           </section>
+
+          <!-- Bai 2 and Bai 3 results begin -->
+          <section class="article-section" id="bai-2">
+            <p class="section-label">Bài tập 2 · JSON và class</p>
+            <h2>Tin tức và giỏ hàng</h2>
+            <div class="activity-grid">
+              <article class="card"><h3>2a · Tin tức từ JSON</h3><p>Hoàn thiện 30 chỗ trống: chuyển JSON thành object, thêm/xóa phần tử, lọc bài đã đăng, tính lượt xem, đếm thẻ và tạo class BaiViet.</p><a class="button" href="bai-2/news.html">Mở News · Bài 2a →</a><div class="source-links"><a href="bai-2/js/bai-a-tin-tuc.js" download>Tải mã bài 2a</a></div></article>
+              <article class="card"><h3>2b · Giỏ hàng độc lập dữ liệu</h3><p>Class GioHang quản lý các dòng sản phẩm, tính tổng và thống kê theo loại. Xuất JSON có đúng 5 thuộc tính mỗi dòng; nạp lại vẫn dùng được mọi phương thức.</p><a class="button" href="bai-2/index.html">Mở giỏ hàng · 20 kiểm tra →</a><div class="source-links"><a href="bai-2/js/bai-b-gio-hang.js" download>Tải mã bài 2b</a></div></article>
+            </div>
+            <div class="activity-summary"><p><strong>Kết quả 2a:</strong> 4 bài đã đăng, tổng 2600 lượt xem; bài hot #2. Thẻ “mau moi” có ở 2 bài.</p><p><strong>Kết quả 2b:</strong> hai dòng sản phẩm: 150 thiệp cưới cotton × 1500 đ và 200 phong bì lót lụa × 500 đ. <strong>Tổng: 325000 đ.</strong></p><p>Bộ kiểm tra gốc bài 2b đạt <strong>20/20</strong>.</p></div>
+            <details class="answers-panel"><summary>Đáp án 30 chỗ trống bài 2a</summary>
+              <div class="table-wrap"><table class="answer-table"><caption class="small">Bài 2a · Đáp án và ý nghĩa</caption>
+                <thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Giải thích</th></tr></thead>
+                <tbody><tr><td>1</td><td><code>parse</code></td><td>JSON.parse chuyển chuỗi JSON thành mảng object.</td></tr><tr><td>2</td><td><code>push</code></td><td>Thêm bài vào cuối mảng.</td></tr><tr><td>3</td><td><code>unshift</code></td><td>Thêm bài vào đầu mảng.</td></tr><tr><td>4</td><td><code>pop</code></td><td>Lấy và xóa phần tử cuối.</td></tr><tr><td>5</td><td><code>6</code></td><td>Bài vừa thêm vào cuối có id bằng 6.</td></tr><tr><td>6</td><td><code>shift</code></td><td>Lấy và xóa phần tử đầu.</td></tr><tr><td>7</td><td><code>5</code></td><td>Sau khi thêm hai bài rồi xóa hai bài đó, mảng còn 5 phần tử.</td></tr><tr><td>8</td><td><code>[&quot;tac gia&quot;]</code></td><td>Dùng dấu ngoặc vuông để truy cập khóa có dấu cách.</td></tr><tr><td>9</td><td><code>delete</code></td><td>Xóa thuộc tính noiBat khỏi object.</td></tr><tr><td>10</td><td><code>undefined</code></td><td>Thuộc tính noiBat đã bị xóa.</td></tr><tr><td>11</td><td><code>[GHIM] Mẫu thiệp cưới mùa thu</code></td><td>baiGhim và dsBai[1] cùng tham chiếu một object.</td></tr><tr><td>12</td><td><code>filter</code></td><td>Lọc các bài có draft bằng false.</td></tr><tr><td>13</td><td><code>4</code></td><td>Bốn bài đã đăng có id 1, 2, 3 và 5.</td></tr><tr><td>14</td><td><code>map</code></td><td>Tạo mảng mới từ các tiêu đề.</td></tr><tr><td>15</td><td><code>toUpperCase</code></td><td>Chuyển tiêu đề thành chữ hoa.</td></tr><tr><td>16</td><td><code>bai.views</code></td><td>Cộng lượt xem của bài đang duyệt.</td></tr><tr><td>17</td><td><code>0</code></td><td>Giá trị khởi tạo cho tổng số học.</td></tr><tr><td>18</td><td><code>2600</code></td><td>320 + 870 + 540 + 870 = 2600.</td></tr><tr><td>19</td><td><code>B — một chuỗi bắt đầu bằng &quot;[object Object]&quot;</code></td><td>Không có giá trị khởi tạo, accumulator đầu tiên là object bài #1. Kết quả là &quot;[object Object]870540870&quot;.</td></tr><tr><td>20</td><td><code>&gt;</code></td><td>Chỉ thay max khi lượt xem lớn hơn để giữ bài đứng trước nếu bằng nhau.</td></tr><tr><td>21</td><td><code>2</code></td><td>Bài #2 có 870 lượt xem và đứng trước bài #5 cũng có 870 lượt xem.</td></tr><tr><td>22</td><td><code>undefined</code></td><td>Callback map có block nhưng không return nên mỗi phần tử là undefined.</td></tr><tr><td>23</td><td><code>of</code></td><td>for...of duyệt các giá trị thẻ trong mảng tags.</td></tr><tr><td>24</td><td><code>the</code></td><td>Dùng chính thẻ hiện tại làm khóa của bộ đếm.</td></tr><tr><td>25</td><td><code>2</code></td><td>Thẻ mau moi có ở bài #2 và #5.</td></tr><tr><td>26</td><td><code>constructor</code></td><td>Hàm khởi tạo của class BaiViet.</td></tr><tr><td>27</td><td><code>this</code></td><td>Gán thuộc tính views cho instance hiện tại.</td></tr><tr><td>28</td><td><code>new</code></td><td>Tạo instance của class BaiViet.</td></tr><tr><td>29</td><td><code>stringify</code></td><td>Chuyển object thành chuỗi JSON.</td></tr><tr><td>30</td><td><code>không</code></td><td>tomTat là phương thức trên prototype, không phải thuộc tính dữ liệu riêng được JSON.stringify xuất ra.</td></tr></tbody>
+              </table></div>
+            </details>
+            <h3 class="section-spaced">Các phương thức của giỏ hàng</h3>
+            <div class="table-wrap"><table class="answer-table"><caption class="small">Bài 2b · Tám thành phần cần hoàn thiện</caption><thead><tr><th scope="col">#</th><th scope="col">Thành phần</th><th scope="col">Kết quả</th></tr></thead><tbody>
+              <tr><td>1</td><td><code>them</code></td><td>Chỉ nhận số lượng là number nguyên dương; cùng id thì cộng dồn. Sao chép dữ liệu sản phẩm để giữ danh mục và giỏ độc lập.</td></tr>
+              <tr><td>2</td><td><code>xoa</code></td><td>Xóa dòng theo id; trả true nếu đã xóa, false nếu không tìm thấy.</td></tr>
+              <tr><td>3</td><td><code>tongTien</code></td><td>Cộng giá × số lượng của mọi dòng; giỏ rỗng bằng 0.</td></tr>
+              <tr><td>4</td><td><code>thongKeTheoLoai</code></td><td>Object ánh xạ loại sang tổng tiền; giỏ rỗng trả object rỗng.</td></tr>
+              <tr><td>5</td><td><code>dongDatNhat</code></td><td>Bản sao dòng có thành tiền lớn nhất, có thêm thanhTien. Hòa thì giữ dòng đứng trước; rỗng trả null.</td></tr>
+              <tr><td>6</td><td><code>layDanhSach</code></td><td>Mảng mới chứa bản sao từng dòng, mỗi dòng thêm thanhTien.</td></tr>
+              <tr><td>7</td><td><code>xuatJSON</code></td><td>Chuỗi JSON của mảng dòng; mỗi dòng chỉ có id, ten, loai, gia, soLuong.</td></tr>
+              <tr><td>8</td><td><code>napGioHang</code></td><td>Khôi phục instance GioHang độc lập có đủ phương thức từ chuỗi đã xuất.</td></tr>
+            </tbody></table></div>
+            <div class="source-links"><a href="bai-2/js/kiem-tra.js">Bộ kiểm tra gốc bài 2b</a></div>
+          </section>
+          <section class="article-section" id="bai-3">
+            <p class="section-label">Bài tập 3 · DOM và sự kiện</p>
+            <h2>Thư viện ảnh và tin nhanh</h2>
+            <div class="activity-grid">
+              <article class="card"><h3>3a · Thư viện ảnh tương tác</h3><p>Hoàn thiện 27 chỗ trống. Bấm ảnh nhỏ để đổi ảnh lớn, xem chú thích và viền ảnh đã chọn. Nút khóa gỡ trình lắng nghe; bấm khoảng trống vẫn an toàn.</p><a class="button" href="bai-3/index.html">Mở thư viện ảnh · Bài 3a →</a><div class="source-links"><a href="bai-3/js/bai-a-gallery.js" download>Tải mã bài 3a</a></div></article>
+              <article class="card"><h3>3b · Lọc và đăng tin nhanh</h3><p>Lọc tiêu đề hoặc nội dung không phân biệt hoa thường, cập nhật bộ đếm, mở rộng và thu gọn tin. Tin mới chèn đầu danh sách và tuân theo bộ lọc hiện tại.</p><a class="button" href="bai-3/news-wrapper.html">Mở tin nhanh · Bài 3b →</a><div class="source-links"><a href="bai-3/js/bai-b-tin-nhanh.js" download>Tải mã bài 3b</a></div></article>
+            </div>
+            <div class="activity-summary"><p><strong>Kiểm chứng 3b:</strong> bấm “Chạy kiểm tra Bài B” ở cuối trang tin; bộ kiểm tra gốc đạt <strong>18/18</strong>. Tải lại trang sau khi chạy để xóa các tin thử.</p><p>Tiêu đề, nội dung và từ khóa tìm kiếm đều hiển thị nguyên văn bằng textContent, kể cả khi chứa thẻ HTML.</p></div>
+            <details class="answers-panel"><summary>Đáp án 27 chỗ trống bài 3a</summary>
+              <div class="table-wrap"><table class="answer-table"><caption class="small">Bài 3a · Đáp án và ý nghĩa</caption>
+                <thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Giải thích</th></tr></thead>
+                <tbody><tr><td>1</td><td><code>querySelector</code></td><td>Trả về phần tử đầu tiên khớp bộ chọn CSS.</td></tr><tr><td>2</td><td><code>querySelectorAll</code></td><td>Trả về tất cả ảnh nhỏ khớp bộ chọn dưới dạng NodeList.</td></tr><tr><td>3</td><td><code>getElementById</code></td><td>Tìm ô nhập có id o-tim-kiem.</td></tr><tr><td>4</td><td><code>6</code></td><td>Trong HTML có sáu ảnh nhỏ ở #gallery ul.</td></tr><tr><td>5</td><td><code>3</code></td><td>firstChild là text node chứa ký tự xuống dòng và tab trước li đầu tiên.</td></tr><tr><td>6</td><td><code>13</code></td><td>Sáu phần tử li xen với bảy text node do khoảng trắng trong HTML.</td></tr><tr><td>7</td><td><code>parentNode</code></td><td>Phần tử cha của ảnh nhỏ là li.</td></tr><tr><td>8</td><td><code>createElement</code></td><td>Tạo phần tử p cho chú thích.</td></tr><tr><td>9</td><td><code>textContent</code></td><td>Gán văn bản thuần, không phân tích nội dung như HTML.</td></tr><tr><td>10</td><td><code>appendChild</code></td><td>Chèn chú thích vào cuối div chứa ảnh lớn.</td></tr><tr><td>11</td><td><code>!==</code></td><td>Bỏ qua sự kiện có đích không phải IMG.</td></tr><tr><td>12</td><td><code>return</code></td><td>Kết thúc hàm ngay khi bấm khoảng trống hoặc mép li.</td></tr><tr><td>13</td><td><code>target</code></td><td>e.target là ảnh nhỏ thực sự nhận thao tác bấm.</td></tr><tr><td>14</td><td><code>of</code></td><td>for...of duyệt từng phần tử ảnh trong NodeList.</td></tr><tr><td>15</td><td><code>className</code></td><td>Đặt lớp dang-chon cho li chứa ảnh vừa bấm.</td></tr><tr><td>16</td><td><code>addEventListener</code></td><td>Đăng ký một trình lắng nghe click trên ul, dùng event delegation.</td></tr><tr><td>17</td><td><code>doiAnh</code></td><td>Truyền tham chiếu hàm để trình duyệt gọi khi có sự kiện.</td></tr><tr><td>18</td><td><code>B Báo TypeError ngay khi tải trang</code></td><td>doiAnh() được gọi ngay mà không có đối số e; truy cập e.target gây TypeError.</td></tr><tr><td>19</td><td><code>focus</code></td><td>Xoá chữ gợi ý khi ô tìm kiếm nhận focus.</td></tr><tr><td>20</td><td><code>removeEventListener</code></td><td>Gỡ trình lắng nghe click đã đăng ký trên khung ảnh nhỏ.</td></tr><tr><td>21</td><td><code>doiAnh</code></td><td>Phải dùng đúng tham chiếu hàm đã đăng ký trước đó.</td></tr><tr><td>22</td><td><code>click</code></td><td>e.type là tên sự kiện đang được xử lý.</td></tr><tr><td>23</td><td><code>nut-khoa</code></td><td>Đích thao tác là nút có id nut-khoa.</td></tr><tr><td>24</td><td><code>Không</code></td><td>Hai hàm mũi tên viết riêng tạo hai function object khác nhau, dù nội dung giống nhau.</td></tr><tr><td>25</td><td><code>prepend</code></td><td>Chèn mục mới vào đầu danh sách bài viết bên phải.</td></tr><tr><td>26</td><td><code>Hiện nguyên cả cặp thẻ &lt;b&gt;thiệp cưới&lt;/b&gt;</code></td><td>textContent hiển thị ký tự văn bản; không tạo phần tử b hay chữ đậm.</td></tr><tr><td>27</td><td><code>3</code></td><td>Danh sách ban đầu có hai li; prepend thêm một li nên tổng là ba.</td></tr></tbody>
+              </table></div>
+            </details>
+            <h3 class="section-spaced">Năm chức năng của trang tin</h3>
+            <ol class="step-list">
+              <li class="step"><h3>F1 · Bộ đếm tin</h3><p>Hiện “Đang hiển thị x/y tin” ngay khi tải, sau mỗi lần lọc và đăng tin.</p></li>
+              <li class="step"><h3>F2 · Lọc khi gõ</h3><p>Xử lý keyup trên ô tìm kiếm; tìm trong h3 và p, dùng lớp an để ẩn tin không khớp. Từ khóa rỗng hiện mọi tin.</p></li>
+              <li class="step"><h3>F3 · Không tìm thấy</h3><p>Hiện đúng thông báo kèm nguyên văn từ khóa khi không có kết quả; ẩn thông báo khi có tin khớp.</p></li>
+              <li class="step"><h3>F4 · Mở rộng và thu gọn</h3><p>Một trình lắng nghe click duy nhất trên #list xử lý các nút Read more, kể cả tin vừa đăng. Bấm phần khác của tin không thay đổi trạng thái.</p></li>
+              <li class="step"><h3>F5 · Đăng tin nhanh</h3><p>Kiểm tra hai ô nhập, tạo đủ ngày từ homNay(), tiêu đề, nội dung và nút. Chèn tin lên đầu, xóa ô nhập và lỗi rồi áp dụng lại bộ lọc.</p></li>
+            </ol>
+            <div class="source-links"><a href="bai-3/js/kiem-tra.js">Bộ kiểm tra gốc bài 3b</a></div>
+          </section>
+          <!-- Bai 2 and Bai 3 results end -->
         </div>
-        <aside class="rail" aria-label="Mục lục Bài 4 Buổi 4"><strong>Bài 4 · Buổi 4</strong><a href="#bai-1a">1a · 19 đáp án</a><a href="#bai-1b">1b · Bốn hàm</a><a href="#kiem-tra">12 kiểm tra</a><a href="#nap-script">Thứ tự nạp script</a><a href="bai-1/index.html">Chạy bài 1a →</a><a href="bai-1/about.html">Chạy bài 1b →</a></aside>
+        <aside class="rail" aria-label="Mục lục Bài 4 Buổi 4"><strong>Bài 4 · Buổi 4</strong><a href="#bai-1a">Bài 1a · Phiếu báo giá</a><a href="#bai-1b">Bài 1b · Phiếu xác nhận</a><a href="#bai-2">Bài 2 · JSON và giỏ hàng</a><a href="#bai-3">Bài 3 · DOM và sự kiện</a><a href="bai-2/news.html">Chạy bài 2a →</a><a href="bai-2/index.html">Chạy bài 2b →</a><a href="bai-3/index.html">Chạy bài 3a →</a><a href="bai-3/news-wrapper.html">Chạy bài 3b →</a></aside>
       </div>
     </section>
   </main>

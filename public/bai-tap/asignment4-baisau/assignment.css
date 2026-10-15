@@ -1,4 +1,5 @@
 .answer-table { width: 100%; border-collapse: collapse; background: white; font-size: .92rem; }
+.content-grid > div { min-width: 0; }
 .answer-table th, .answer-table td { padding: 12px 14px; border: 1px solid var(--line); text-align: left; vertical-align: top; line-height: 1.6; }
 .answer-table th { background: var(--accent-soft); }
 .answer-table th:first-child, .answer-table td:first-child { width: 56px; text-align: center; }
@@ -9,10 +10,24 @@
 .result-pair pre { margin-top: 0; font-size: .82rem; }
 .source-links { display: flex; flex-wrap: wrap; gap: 16px; margin: 18px 0; }
 #kiem-tra .card-icon { display: inline-grid; width: auto; min-width: 56px; padding-inline: 8px; font-size: .92rem; white-space: nowrap; }
+.exercise-jump { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.exercise-jump a { padding: 18px; border: 1px solid var(--line); border-radius: 13px; background: white; text-decoration: none; }
+.exercise-jump strong, .exercise-jump span { display: block; }
+.exercise-jump span { margin-top: 6px; color: var(--muted); font-size: .86rem; line-height: 1.5; }
+.activity-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-block: 20px; }
+.activity-grid h3 { line-height: 1.35; }
+.activity-grid .source-links { margin-bottom: 0; }
+.answers-panel { margin-top: 22px; }
+.answers-panel > summary { cursor: pointer; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--accent-soft); color: var(--accent-dark); font-weight: 750; }
+.answers-panel[open] > summary { margin-bottom: 12px; }
+.activity-summary { padding: 18px 20px; border: 1px solid var(--line); border-radius: 13px; background: white; }
+.activity-summary p { margin-block: 6px; }
 @media (max-width: 700px) {
+  .exercise-jump, .activity-grid { grid-template-columns: 1fr; }
   .result-pair { grid-template-columns: 1fr; }
   .answer-table th, .answer-table td { padding: 9px; font-size: .82rem; }
   .answer-table th:nth-child(2) { width: auto; }
   .answer-table th:nth-child(2), .answer-table td:nth-child(2) { min-width: 120px; }
   .answer-table td:nth-child(2) code { white-space: nowrap; }
+  .answers-panel .answer-table td:nth-child(2) code { white-space: normal; }
 }

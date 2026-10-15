@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 3b Lọc tin và đăng tin nhanh · Bài 4 Buổi 4</title>
+  <link rel="stylesheet" href="/assets/course-home.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #300302; background: #fed58e; font: 16px/1.5 Georgia, serif; }
+    .exercise-header { min-height: 76px; padding: 16px 80px 16px 24px; background: #fdf6ea; }
+    .exercise-header h1 { margin: 0 0 6px; font-size: 20px; }
+    .exercise-header nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .exercise-header a { color: #593e0f; text-underline-offset: 3px; }
+    .exercise-header a:focus-visible { outline: 3px solid #be841f; outline-offset: 3px; }
+    .exercise-viewport { overflow: auto; }
+    .exercise-frame { display: block; border: 0; width: 100%; min-width: 980px; height: calc(100vh - 102px); min-height: 620px; }
+    .mobile-hint { display: none; margin: 8px 0 0; font-size: 14px; }
+    @media (max-width: 980px) {
+      .exercise-header { padding-left: 16px; }
+      .exercise-header h1 { font-size: 18px; }
+      .mobile-hint { display: block; }
+      .exercise-frame { height: calc(100vh - 150px); }
+    }
+  </style>
+</head>
+<body>
+  <a id="course-home-link" href="/" aria-label="L — Về trang chủ IT4409" title="Về trang chủ IT4409">L</a>
+  <header class="exercise-header">
+    <h1>Bài 3b Lọc tin và đăng tin nhanh</h1>
+    <nav aria-label="Điều hướng bài thực hành">
+      <a href="../">Bài 4 Buổi 4</a>
+      <a href="index.html">Bài 3a Thư viện ảnh</a>
+      <a href="news-wrapper.html" aria-current="page">Bài 3b Tin nhanh</a>
+    </nav>
+    <p class="mobile-hint">Kéo ngang khung bài tập để xem đủ giao diện.</p>
+  </header>
+  <main class="exercise-viewport" aria-label="Trang News thực hành">
+    <iframe class="exercise-frame" src="news.html" title="Bài 3b Trang News lọc tin và đăng tin nhanh"></iframe>
+  </main>
+  <script>
+    const khungTin = document.querySelector('.exercise-frame');
+    const duongDanTin = new URL('news.html', location.href).pathname;
+    khungTin.addEventListener('load', () => {
+      try {
+        const dich = new URL(khungTin.contentWindow.location.href);
+        if (dich.origin === location.origin && dich.pathname !== duongDanTin) {
+          location.assign(dich.href);
+        }
+      } catch {
+        // Các liên kết ngoài của mẫu có thể mở ở một origin khác.
+      }
+    });
+  </script>
+</body>
+</html>
