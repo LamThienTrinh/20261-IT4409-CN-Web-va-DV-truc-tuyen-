@@ -18,4 +18,9 @@ Website học liệu và bài tập môn Công nghệ Web và Dịch vụ trực
   - Bài 3a thư viện ảnh: `public/bai-tap/asignment4-baisau/bai-3/index.html`.
   - Bài 3b tin nhanh và 18 kiểm tra: `public/bai-tap/asignment4-baisau/bai-3/news-wrapper.html` (bao ngoài `news.html` giữ nguyên theo đề).
 
-Các trang deploy nằm trong `public/bai-tap/assignment-01`, `assignment-02`, `assignment-03`, `assignment-04` và `asignment4-baisau`.
+- Assignment 05: 10 bài JavaScript và React, từ timer/Promise/async-await đến API thời tiết, props, state, effect, router và context.
+  - Tổng quan và đáp án: `public/bai-tap/assignment-05/index.html`.
+  - Mỗi ví dụ: `public/bai-tap/assignment-05/bai-N/index.html` với N từ 1 đến 10.
+  - Source JSX và bundle React có hướng dẫn build tại `public/bai-tap/assignment-05/react-assets/`.
+
+Các trang deploy nằm trong `public/bai-tap/assignment-01`, `assignment-02`, `assignment-03`, `assignment-04`, `asignment4-baisau` và `assignment-05`.

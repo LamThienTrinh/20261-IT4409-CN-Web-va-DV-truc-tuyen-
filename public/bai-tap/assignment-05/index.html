@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Assignment 05 môn IT4409: 10 bài tập JavaScript và React, timer, Promise, async await, thời tiết, props, state, effect, router và context.">
+<title>Assignment 05 · JavaScript và React · IT4409</title>
+<link rel="stylesheet" href="/assets/styles.css"><link rel="stylesheet" href="assignment.css"></head>
+<body><a class="skip-link" href="#main">Đi tới nội dung</a><header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="L — Trang chủ IT4409"><span class="brand-mark">L</span><span>IT4409<small>Học liệu môn học</small></span></a>
+      <nav class="primary-nav" aria-label="Điều hướng chính">
+        <a href="/">Tổng quan</a>
+        <details class="nav-group"><summary>Tài liệu</summary><div class="nav-menu"><a href="/tai-lieu/">Kho tài liệu</a><a href="/tai-lieu/assignment-01/">Đề Assignment 01</a><a href="/tai-lieu/git-github/">Git &amp; GitHub</a><a href="/tai-lieu/vercel-domain/">Vercel &amp; tên miền</a></div></details>
+        <details class="nav-group"><summary aria-current="page">Bài tập về nhà</summary><div class="nav-menu"><a href="/bai-tap/">Danh sách bài tập</a><a href="/bai-tap/assignment-01/">Assignment 01 · Domain, host, repo</a><a href="/bai-tap/assignment-02/">Assignment 02 · HTML5</a><a href="/bai-tap/assignment-03/">Assignment 03 · CSS</a><a href="/bai-tap/assignment-04/">Assignment 04 · Responsive CSS</a><a href="/bai-tap/asignment4-baisau/">Bài 4 · Buổi 4 · JavaScript</a><a href="/bai-tap/assignment-05/" aria-current="page">Assignment 05 · JavaScript &amp; React</a></div></details>
+        <a href="https://github.com/LamThienTrinh/20261-IT4409-CN-Web-va-DV-truc-tuyen-" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+<main id="main"><div class="page-head"><div class="container">
+<nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/">Trang chủ</a><span>/</span><a href="/bai-tap/">Bài tập về nhà</a><span>/</span><span aria-current="page">Assignment 05</span></nav>
+<p class="eyebrow">Bài 5 · JavaScript và React</p><h1>Từ Promise đến React</h1>
+<p class="lead">Mười bài thực hành về quản lý timer, xử lý bất đồng bộ, tra cứu thời tiết và xây dựng component React với props, state, effect, định tuyến và context.</p>
+<div class="button-row"><a class="button" href="#danh-sach">Xem 10 bài tập →</a><a class="button button-secondary" href="bai-5/">Tra cứu thời tiết</a><a class="button button-secondary" href="bai-7/">Chạy React Counter</a></div>
+</div></div><section class="section"><div class="container content-grid"><div>
+<section class="article-section" id="danh-sach"><p class="section-label">Lộ trình bài làm</p><h2>Mười ví dụ có thể chạy trực tiếp</h2><ul class="exercise-list"><li><a href="#bai-1"><span>01</span><strong>Quản lý timer</strong></a></li><li><a href="#bai-2"><span>02</span><strong>Bỏ từ khóa await</strong></a></li><li><a href="#bai-3"><span>03</span><strong>Promise tải người dùng</strong></a></li><li><a href="#bai-4"><span>04</span><strong>Đếm ngược hủy đơn hàng</strong></a></li><li><a href="#bai-5"><span>05</span><strong>Tra cứu thời tiết qua hai API</strong></a></li><li><a href="#bai-6"><span>06</span><strong>UserCard và props</strong></a></li><li><a href="#bai-7"><span>07</span><strong>Counter với useState</strong></a></li><li><a href="#bai-8"><span>08</span><strong>Tải người dùng bằng useEffect</strong></a></li><li><a href="#bai-9"><span>09</span><strong>Home và About với React Router</strong></a></li><li><a href="#bai-10"><span>10</span><strong>Chia sẻ giao diện bằng Context</strong></a></li></ul></section>
+<section class="article-section" id="bai-1">
+          <p class="section-label">Bài tập 01</p><h2>Quản lý timer</h2>
+          <p>Nếu bỏ if (timerId) { clearTimeout(timerId); }, mỗi lần bấm tạo một timer riêng và không hủy timer đang chờ. Mỗi callback thực thi khoảng 3 giây sau lần bấm tương ứng, nên bấm nhiều lần nhanh sẽ có nhiều lần thực thi. Biến timerId chỉ bị gán ID mới, không tự hủy timer cũ. Giữ clearTimeout thì các lần bấm trong lúc chờ sẽ đặt lại thời gian, và chỉ callback của lần bấm cuối còn chạy sau 3 giây. Nếu chỉ bấm một lần, hai phiên bản cho kết quả như nhau. Trong ví dụ gốc, mọi callback gán cùng nội dung nên nhìn vào dòng trạng thái có thể khó nhận ra nhiều lần thực thi; demo thêm bộ đếm để minh họa.</p>
+          <div class="source-links"><a class="button" href="bai-1/">Chạy bài 1 →</a><a href="bai-1/demo.js" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>// Hai phiên bản chỉ khác việc hủy timer đang chờ trước khi đặt timer mới.
+const cacViDu = [
+  { suffix: &quot;&quot;, huyTimerCu: true },
+  { suffix: &quot;-no-clear&quot;, huyTimerCu: false }
+];
+const datLai = [];
+for (const viDu of cacViDu) {
+  let timerId = null;
+  let soLan = 0;
+  const dangCho = new Set();
+  const status = document.getElementById(`status${viDu.suffix}`);
+  const count = document.getElementById(`count${viDu.suffix}`);
+  const log = document.getElementById(`log${viDu.suffix}`);
+  document.getElementById(`start${viDu.suffix}`).onclick = () =&gt; {
+    if (viDu.huyTimerCu &amp;&amp; timerId) {
+      clearTimeout(timerId);
+      dangCho.delete(timerId);
+    }
+    status.textContent = &quot;Status: Timer started (3s)&quot;;
+    const id = setTimeout(() =&gt; {
+      dangCho.delete(id);
+      soLan += 1;
+      status.textContent = &quot;✅ Action executed!&quot;;
+      count.textContent = soLan;
+      const dong = document.createElement(&quot;li&quot;);
+      dong.textContent = `Callback thực thi lần ${soLan}.`;
+      log.append(dong);
+    }, 3000);
+    timerId = id;
+    dangCho.add(id);
+  };
+  datLai.push(() =&gt; {
+    for (const id of dangCho) clearTimeout(id);
+    dangCho.clear();
+    timerId = null;
+    soLan = 0;
+    count.textContent = &quot;0&quot;;
+    status.textContent = &quot;Status: Waiting...&quot;;
+    log.replaceChildren();
+  });
+}
+document.getElementById(&quot;reset&quot;).onclick = () =&gt; datLai.forEach(ham =&gt; ham());</code></pre></details>
+        </section><section class="article-section" id="bai-2">
+          <p class="section-label">Bài tập 02</p><h2>Bỏ từ khóa await</h2>
+          <p>const msg = wait(1000) gán đối tượng Promise đang chờ vào msg thay vì giá trị chuỗi đã resolve. Lệnh out.textContent = msg chạy ngay và chuyển Promise thành chuỗi [object Promise], nên dòng Waiting hầu như không kịp hiển thị. Một giây sau Promise resolve thành ✅ Done nhưng không có câu lệnh nào chờ rồi cập nhật giao diện, nên trang vẫn hiện [object Promise]. Có await, hàm bất đồng bộ tạm dừng đến khi Promise hoàn thành rồi nhận chuỗi ✅ Done và gán vào textContent; điều này không chặn luồng giao diện.</p>
+          <div class="source-links"><a class="button" href="bai-2/">Chạy bài 2 →</a><a href="bai-2/demo.js" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>function wait(ms) {
+  return new Promise(resolve =&gt; setTimeout(() =&gt; resolve(&quot;✅ Done&quot;), ms));
+}
+
+async function runDemo() {
+  const out = document.getElementById(&quot;out&quot;);
+  out.textContent = &quot;⏳ Waiting...&quot;;
+  const msg = await wait(1000);
+  out.textContent = msg;
+}
+
+async function runWithoutAwait() {
+  const out = document.getElementById(&quot;out-no-await&quot;);
+  out.textContent = &quot;⏳ Waiting...&quot;;
+  const msg = wait(1000);
+  out.textContent = msg;
+}
+
+document.getElementById(&quot;btn&quot;).onclick = runDemo;
+document.getElementById(&quot;btn-no-await&quot;).onclick = runWithoutAwait;</code></pre></details>
+        </section><section class="article-section" id="bai-3">
+          <p class="section-label">Bài tập 03</p><h2>Promise tải người dùng</h2>
+          <p>Với ID 1: hiện Đang tải... rồi User: An sau khoảng một giây. Với ID -1: hiện Đang tải... rồi Lỗi: ID không hợp lệ. await biến Promise bị reject thành lỗi tại vị trí chờ để catch xử lý.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 3</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>resolve, reject</code></td><td>Hai callback xử lý thành công và lỗi của Promise.</td></tr>
+<tr><td>2</td><td><code>resolve</code></td><td>Hoàn thành Promise với object người dùng.</td></tr>
+<tr><td>3</td><td><code>reject</code></td><td>Hoàn thành Promise với Error khi ID không hợp lệ.</td></tr>
+<tr><td>4</td><td><code>async</code></td><td>Cho phép dùng await bên trong showUser.</td></tr>
+<tr><td>5</td><td><code>try</code></td><td>Bắt lỗi từ Promise bị reject bằng catch.</td></tr>
+<tr><td>6</td><td><code>await</code></td><td>Chờ fetchUser và nhận giá trị user.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-3/">Chạy bài 3 →</a><a href="bai-3/demo.js" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>function fetchUser(id) {
+  // (1) Hai callback của Promise.
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      if (id &gt; 0) {
+        // (2) Hoàn thành thành công.
+        resolve({ id: id, name: &quot;An&quot; });
+      } else {
+        // (3) Hoàn thành với lỗi.
+        reject(new Error(&quot;ID không hợp lệ&quot;));
+      }
+    }, 1000);
+  });
+}
+
+// (4) Hàm bất đồng bộ.
+async function showUser(id) {
+  const result = document.getElementById(&quot;result&quot;);
+  result.textContent = &quot;Đang tải...&quot;;
+  // (5) Bắt lỗi Promise bị reject.
+  try {
+    // (6) Chờ giá trị thành công.
+    const user = await fetchUser(id);
+    result.textContent = `User: ${user.name}`;
+  } catch (err) {
+    result.textContent = `Lỗi: ${err.message}`;
+  }
+}
+
+document.getElementById(&quot;ok&quot;).onclick = () =&gt; showUser(1);
+document.getElementById(&quot;fail&quot;).onclick = () =&gt; showUser(-1);</code></pre></details>
+        </section><section class="article-section" id="bai-4">
+          <p class="section-label">Bài tập 04</p><h2>Đếm ngược hủy đơn hàng</h2>
+          <p>Khi đặt hàng, trang đếm từ 5 giây xuống. Hết giờ thì Promise resolve với Đơn hàng đã được xác nhận; bấm Hủy trước khi hết giờ thì clearInterval và reject với Error Bạn đã hủy đơn. answer.js là bản điền đúng khung đề. Demo chạy bổ sung khóa nút Đặt hàng trong lúc đang đếm, rồi mở lại sau khi xác nhận/hủy, để tránh nhiều interval dùng chung một intervalId.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 4</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>setInterval</code></td><td>Gọi callback mỗi 1000 ms.</td></tr>
+<tr><td>2</td><td><code>left--</code></td><td>Giảm số giây còn lại đi một.</td></tr>
+<tr><td>3</td><td><code>clearInterval</code></td><td>Dừng timer lặp khi hết giờ.</td></tr>
+<tr><td>4</td><td><code>resolve</code></td><td>Xác nhận đơn khi hết thời gian hủy.</td></tr>
+<tr><td>5</td><td><code>reject</code></td><td>Báo lỗi Bạn đã hủy đơn khi bấm Hủy.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-4/">Chạy bài 4 →</a><a href="bai-4/answer.js" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>const status = document.getElementById(&quot;status&quot;);
+let intervalId = null;
+
+function countdown(seconds) {
+  return new Promise((resolve, reject) =&gt; {
+    let left = seconds;
+    status.textContent = `Còn ${left}s để hủy...`;
+    // (1) Lặp mỗi 1000 ms.
+    intervalId = setInterval(() =&gt; {
+      // (2) Giảm biến đếm.
+      left--;
+      status.textContent = `Còn ${left}s để hủy...`;
+      if (left === 0) {
+        // (3) Dừng lặp; (4) hoàn thành thành công.
+        clearInterval(intervalId);
+        resolve(&quot;Đơn hàng đã được xác nhận&quot;);
+      }
+    }, 1000);
+    document.getElementById(&quot;cancel&quot;).onclick = () =&gt; {
+      clearInterval(intervalId);
+      // (5) Hoàn thành với lỗi khi hủy.
+      reject(new Error(&quot;Bạn đã hủy đơn&quot;));
+    };
+  });
+}
+
+document.getElementById(&quot;order&quot;).onclick = async () =&gt; {
+  try {
+    const msg = await countdown(5);
+    status.textContent = `${msg}`;
+  } catch (err) {
+    status.textContent = `${err.message}`;
+  }
+};</code></pre></details>
+        </section><section class="article-section" id="bai-5">
+          <p class="section-label">Bài tập 05</p><h2>Tra cứu thời tiết qua hai API</h2>
+          <p>Gọi geocoding để lấy latitude/longitude rồi dùng hai tọa độ gọi forecast với current_weather=true. encodeURIComponent giữ tên thành phố an toàn trong query string. Bản chạy giữ bố cục mẫu, bổ sung kiểm tra response.ok, khóa nút khi tải và tạo DOM bằng textContent để nội dung API không bị diễn giải thành HTML. URL trong PDF được nối thành một dòng đúng tên miền, bỏ ngắt dòng do trình bày. Nhiệt độ thực tế thay đổi theo thời gian và không cố định ở giá trị trong ảnh mẫu.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 5</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>async</code></td><td>Khai báo hàm bất đồng bộ xemThoiTiet.</td></tr>
+<tr><td>2</td><td><code>try</code></td><td>Bao phần gọi API trong khối bắt lỗi.</td></tr>
+<tr><td>3</td><td><code>await</code></td><td>Chờ fetch lấy tọa độ.</td></tr>
+<tr><td>4</td><td><code>await</code></td><td>Chờ đọc JSON từ response tọa độ.</td></tr>
+<tr><td>5</td><td><code>await</code></td><td>Chờ fetch lấy thời tiết theo tọa độ.</td></tr>
+<tr><td>6</td><td><code>catch</code></td><td>Xử lý lỗi mạng, dữ liệu hoặc thành phố không tìm thấy.</td></tr>
+<tr><td>7</td><td><code>err</code></td><td>Lấy thông báo từ err.message.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-5/">Chạy bài 5 →</a><a href="bai-5/demo.js" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>// (1) Hàm bất đồng bộ.
+async function xemThoiTiet() {
+  const city = document.getElementById(&quot;city&quot;).value.trim();
+  const box = document.getElementById(&quot;box&quot;);
+  const button = document.getElementById(&quot;weather-button&quot;);
+  if (!city) {
+    alert(&quot;Vui lòng nhập tên thành phố!&quot;);
+    return;
+  }
+  button.disabled = true;
+  box.style.display = &quot;block&quot;;
+  box.className = &quot;loading&quot;;
+  box.textContent = &quot;Đang tải dữ liệu...&quot;;
+  // (2) Khối bắt lỗi cho hai yêu cầu mạng.
+  try {
+    const geoURL = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&amp;count=1&amp;language=vi`;
+    // (3) Chờ response; (4) chờ đọc JSON.
+    const geoRes = await fetch(geoURL);
+    if (!geoRes.ok) throw new Error(`Không tải được tọa độ (HTTP ${geoRes.status})`);
+    const geoData = await geoRes.json();
+    if (!geoData.results || geoData.results.length === 0) {
+      throw new Error(`Không tìm thấy thành phố &quot;${city}&quot;`);
+    }
+    const { latitude, longitude, name, country } = geoData.results[0];
+    const weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&amp;longitude=${longitude}&amp;current_weather=true`;
+    // (5) Chờ phản hồi thời tiết.
+    const weatherRes = await fetch(weatherURL);
+    if (!weatherRes.ok) throw new Error(`Không tải được thời tiết (HTTP ${weatherRes.status})`);
+    const weatherData = await weatherRes.json();
+    const { temperature, windspeed } = weatherData.current_weather;
+    const locationName = document.createElement(&quot;strong&quot;);
+    locationName.textContent = `${name}, ${country}`;
+    const temp = document.createElement(&quot;span&quot;);
+    temp.className = &quot;temp&quot;;
+    temp.textContent = `${temperature}°C`;
+    const wind = document.createTextNode(`Gió: ${windspeed} km/h`);
+    const coordinates = document.createElement(&quot;small&quot;);
+    coordinates.className = &quot;coordinates&quot;;
+    coordinates.textContent = `Tọa độ: ${latitude.toFixed(2)}, ${longitude.toFixed(2)}`;
+    box.className = &quot;success&quot;;
+    // Dùng textContent để tên từ API luôn là văn bản thuần.
+    box.replaceChildren(locationName, document.createElement(&quot;br&quot;), temp,
+      document.createElement(&quot;br&quot;), wind, document.createElement(&quot;br&quot;), coordinates);
+  // (6) Bắt lỗi; (7) lấy err.message.
+  } catch (err) {
+    box.className = &quot;error&quot;;
+    box.textContent = &quot;Lỗi: &quot; + err.message;
+  } finally {
+    button.disabled = false;
+  }
+}
+
+document.getElementById(&quot;weather-form&quot;).addEventListener(&quot;submit&quot;, event =&gt; {
+  event.preventDefault();
+  xemThoiTiet();
+});</code></pre></details>
+        </section><section class="article-section" id="bai-6">
+          <p class="section-label">Bài tập 06</p><h2>UserCard và props</h2>
+          <p>UserCard nhận name và age qua props. App truyền name=&quot;Alice&quot;, age={22}; kết quả là Tên: Alice và Tuổi: 22.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 6</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>{ name, age }</code></td><td>Destructuring hai prop trong tham số của UserCard.</td></tr>
+<tr><td>2</td><td><code>name</code></td><td>Hiển thị giá trị prop name.</td></tr>
+<tr><td>3</td><td><code>age</code></td><td>Hiển thị giá trị prop age.</td></tr>
+<tr><td>4</td><td><code>name</code></td><td>Tên prop truyền chuỗi Alice.</td></tr>
+<tr><td>5</td><td><code>age</code></td><td>Tên prop truyền số 22.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-6/">Chạy bài 6 →</a><a href="bai-6/source.jsx" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>import React from &quot;react&quot;;
+
+function UserCard({ name, age }) {
+  return (
+    &lt;div&gt;
+      &lt;h3&gt;Tên: {name}&lt;/h3&gt;
+      &lt;p&gt;Tuổi: {age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;UserCard name=&quot;Alice&quot; age={22} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export { UserCard };
+export default App;</code></pre></details>
+        </section><section class="article-section" id="bai-7">
+          <p class="section-label">Bài tập 07</p><h2>Counter với useState</h2>
+          <p>useState(0) tạo count và setCount. Cập nhật dạng prev =&gt; prev ± 1 sử dụng state trước đó, tránh phụ thuộc vào giá trị trong closure khi React gom nhiều cập nhật.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 7</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>useState</code></td><td>Import Hook quản lý state.</td></tr>
+<tr><td>2</td><td><code>count</code></td><td>Giá trị đếm hiện tại.</td></tr>
+<tr><td>3</td><td><code>setCount</code></td><td>Hàm cập nhật giá trị đếm.</td></tr>
+<tr><td>4</td><td><code>useState</code></td><td>Khởi tạo state bằng 0.</td></tr>
+<tr><td>5</td><td><code>prev</code></td><td>Tham số của hàm cập nhật, nhận state trước đó.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-7/">Chạy bài 7 →</a><a href="bai-7/source.jsx" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>import React, { useState } from &quot;react&quot;;
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(prev =&gt; prev + 1)}&gt;Tăng&lt;/button&gt;{&quot; &quot;}
+      &lt;button onClick={() =&gt; setCount(prev =&gt; prev - 1)}&gt;Giảm&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+export { Counter };
+export default Counter;</code></pre></details>
+        </section><section class="article-section" id="bai-8">
+          <p class="section-label">Bài tập 08</p><h2>Tải người dùng bằng useEffect</h2>
+          <p>useEffect với [] tải dữ liệu khi component mount, đọc res.json() rồi setUsers(data). Danh sách dùng user.id làm key. [] không có nghĩa chỉ chạy một lần trong suốt đời ứng dụng: khi component mount lại Effect chạy lại; StrictMode có chu kỳ kiểm tra bổ sung trong môi trường phát triển.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 8</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>useEffect</code></td><td>Import Hook thực thi tác vụ sau render.</td></tr>
+<tr><td>2</td><td><code>useEffect</code></td><td>Đăng ký Effect tải danh sách người dùng.</td></tr>
+<tr><td>3</td><td><code>json</code></td><td>Đọc nội dung Response thành JSON.</td></tr>
+<tr><td>4</td><td><code>setUsers</code></td><td>Cập nhật state bằng dữ liệu nhận được.</td></tr>
+<tr><td>5</td><td><code>[]</code></td><td>Mảng phụ thuộc rỗng: Effect chạy khi component mount.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-8/">Chạy bài 8 →</a><a href="bai-8/source.jsx" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>import React, { useState, useEffect } from &quot;react&quot;;
+
+function UserList() {
+  const [users, setUsers] = useState([]);
+  useEffect(() =&gt; {
+    fetch(&quot;https://jsonplaceholder.typicode.com/users&quot;)
+      .then(res =&gt; res.json())
+      .then(data =&gt; setUsers(data));
+  }, []);
+  return (
+    &lt;ul&gt;
+      {users.map(user =&gt; (
+        &lt;li key={user.id}&gt;{user.name}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+export { UserList };
+export default UserList;</code></pre></details>
+        </section><section class="article-section" id="bai-9">
+          <p class="section-label">Bài tập 09</p><h2>Home và About với React Router</h2>
+          <p>BrowserRouter cung cấp ngữ cảnh định tuyến. Link dùng to, Routes chứa Route, Route dùng path để hiển thị Home hoặc About. Bản đáp án giữ đường dẫn / và /about; demo xuất bản thêm basename để không chiếm trang chủ môn học.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 9</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>BrowserRouter</code></td><td>Router dựa trên History API của trình duyệt.</td></tr>
+<tr><td>2</td><td><code>to</code></td><td>Thuộc tính đích điều hướng của Link.</td></tr>
+<tr><td>3</td><td><code>Routes</code></td><td>Chứa các khai báo Route.</td></tr>
+<tr><td>4</td><td><code>path</code></td><td>Đường dẫn cần khớp của Route.</td></tr>
+<tr><td>5</td><td><code>About</code></td><td>Component hiển thị cho đường dẫn /about.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-9/">Chạy bài 9 →</a><a href="bai-9/source.jsx" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>import React from &quot;react&quot;;
+import { BrowserRouter, Routes, Route, Link } from &quot;react-router-dom&quot;;
+
+function Home() {
+  return &lt;h2&gt;Home&lt;/h2&gt;;
+}
+
+function About() {
+  return &lt;h2&gt;About&lt;/h2&gt;;
+}
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;nav&gt;
+        &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;{&quot; &quot;}
+        &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+      &lt;/nav&gt;
+      &lt;Routes&gt;
+        &lt;Route path=&quot;/&quot; element={&lt;Home /&gt;} /&gt;
+        &lt;Route path=&quot;/about&quot; element={&lt;About /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;</code></pre></details>
+        </section><section class="article-section" id="bai-10">
+          <p class="section-label">Bài tập 10</p><h2>Chia sẻ giao diện bằng Context</h2>
+          <p>createContext(&quot;light&quot;) đặt giá trị mặc định. ThemeContext.Provider value=&quot;dark&quot; ghi đè cho cây con; useContext(ThemeContext) trong ThemedButton nhận dark, nên nút hiện Giao diện hiện tại: dark.</p><div class="table-wrap"><table class="answer-table"><caption>Đáp án các chỗ trống bài 10</caption><thead><tr><th scope="col">Ô</th><th scope="col">Đáp án</th><th scope="col">Ý nghĩa</th></tr></thead><tbody><tr><td>1</td><td><code>createContext</code></td><td>Tạo context có giá trị mặc định light.</td></tr>
+<tr><td>2</td><td><code>Provider</code></td><td>Cung cấp giá trị dark cho cây con.</td></tr>
+<tr><td>3</td><td><code>useContext</code></td><td>Đọc giá trị context gần nhất.</td></tr>
+<tr><td>4</td><td><code>ThemeContext</code></td><td>Context cần tiêu thụ.</td></tr>
+<tr><td>5</td><td><code>theme</code></td><td>Giá trị được đọc từ Provider để hiển thị trên nút.</td></tr></tbody></table></div>
+          <div class="source-links"><a class="button" href="bai-10/">Chạy bài 10 →</a><a href="bai-10/source.jsx" download>Tải mã nguồn</a></div>
+          <details class="code-panel"><summary>Xem mã hoàn chỉnh</summary><pre><code>import React, { createContext, useContext } from &quot;react&quot;;
+
+const ThemeContext = createContext(&quot;light&quot;);
+
+function App() {
+  return (
+    &lt;ThemeContext.Provider value=&quot;dark&quot;&gt;
+      &lt;ThemedButton /&gt;
+    &lt;/ThemeContext.Provider&gt;
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return &lt;button&gt;Giao diện hiện tại: {theme}&lt;/button&gt;;
+}
+
+export { ThemeContext, ThemedButton };
+export default App;</code></pre></details>
+        </section>
+<section class="article-section" id="tai-lieu"><p class="section-label">Tài liệu tham chiếu</p><h2>API và thư viện được sử dụng</h2>
+<ul><li><a href="https://open-meteo.com/en/docs/geocoding-api">Open-Meteo Geocoding API</a> và <a href="https://open-meteo.com/en/docs">Weather API</a> cho bài 5.</li>
+<li><a href="https://react.dev/reference/react">React API Reference</a> cho props, useState, useEffect và useContext.</li>
+<li><a href="https://reactrouter.com/6.30.3/router-components/browser-router">React Router BrowserRouter</a> cho bài 9.</li>
+<li><a href="https://jsonplaceholder.typicode.com/guide/">JSONPlaceholder</a> cung cấp dữ liệu người dùng mẫu cho bài 8.</li></ul>
+<p class="small">Bài 5 và bài 8 gọi API qua mạng. Khi dịch vụ không phản hồi, ví dụ hiển thị lỗi để người dùng có thể thử lại.</p></section>
+</div><aside class="rail" aria-label="Mục lục Assignment 05"><strong>Trong Assignment 05</strong><a href="#bai-1">01 · Quản lý timer</a><a href="#bai-2">02 · Bỏ từ khóa await</a><a href="#bai-3">03 · Promise tải người dùng</a><a href="#bai-4">04 · Đếm ngược hủy đơn hàng</a><a href="#bai-5">05 · Tra cứu thời tiết qua hai API</a><a href="#bai-6">06 · UserCard và props</a><a href="#bai-7">07 · Counter với useState</a><a href="#bai-8">08 · Tải người dùng bằng useEffect</a><a href="#bai-9">09 · Home và About với React Router</a><a href="#bai-10">10 · Chia sẻ giao diện bằng Context</a><a href="#tai-lieu">Tài liệu API và React</a></aside></div></section></main>
+<footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Trịnh Thiên Lam · 20235359</p><div class="footer-links"><a href="/">Tổng quan</a><a href="/bai-tap/">Bài tập về nhà</a></div></div></footer></body></html>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bài 1 · Quản lý timer · Assignment 05</title><link rel="stylesheet" href="../exercises.css"><link rel="stylesheet" href="/assets/course-home.css"></head>
+<body>
+<a id="course-home-link" href="/" aria-label="L — Về trang chủ IT4409">L</a>
+<main>
+  <p><a href="../">← Assignment 05</a></p>
+  <h1>Bài 1 · Quản lý timer</h1>
+  <p>Bấm nhanh mỗi nút ba lần. Có clearTimeout thì chỉ lần cuối thực thi; bỏ clearTimeout thì mỗi lần bấm tạo một callback riêng.</p>
+  <section class="demo-panel"><h2>Có clearTimeout</h2><button id="start" type="button">Start Timer</button><p id="status" role="status">Status: Waiting...</p><p>Số lần thực thi: <strong id="count">0</strong></p><ol id="log"></ol></section>
+  <section class="demo-panel"><h2>Bỏ clearTimeout</h2><button id="start-no-clear" type="button">Start Timer (không hủy timer cũ)</button><p id="status-no-clear" role="status">Status: Waiting...</p><p>Số lần thực thi: <strong id="count-no-clear">0</strong></p><ol id="log-no-clear"></ol></section>
+  <button id="reset" type="button">Đặt lại hai ví dụ</button>
+  <p><a href="demo.js" download>Tải JavaScript</a></p>
+</main><script src="demo.js"></script>
+</body></html>
