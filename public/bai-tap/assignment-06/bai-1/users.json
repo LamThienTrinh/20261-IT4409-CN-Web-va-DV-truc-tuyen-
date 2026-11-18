@@ -1,0 +1,42 @@
+[
+  {
+    "id": 20235359,
+    "name": "Trịnh Thiên Lam",
+    "username": "lam.tt235359",
+    "email": "lam.tt235359@sis.hust.edu.vn",
+    "address": { "street": "Số 1 Đại Cồ Việt", "suite": "Phường Bạch Mai", "city": "Hà Nội" },
+    "phone": "+84 000 000 617"
+  },
+  {
+    "id": 20235315,
+    "name": "Vũ Thuỳ Dương",
+    "username": "duong.vt235315",
+    "email": "duong.vt235315@sis.hust.edu.vn",
+    "address": { "street": "Số 1 Đại Cồ Việt", "suite": "Phường Bạch Mai", "city": "Hà Nội" },
+    "phone": "+84 000 000 284"
+  },
+  {
+    "id": 20235320,
+    "name": "Đoàn Thanh Hải",
+    "username": "hai.dt235320",
+    "email": "hai.dt235320@sis.hust.edu.vn",
+    "address": { "street": "Số 1 Đại Cồ Việt", "suite": "Phường Bạch Mai", "city": "Hà Nội" },
+    "phone": "+84 000 000 935"
+  },
+  {
+    "id": 20235402,
+    "name": "Nguyễn Trần Gia Phụng",
+    "username": "phung.ntg235402",
+    "email": "phung.ntg235402@sis.hust.edu.vn",
+    "address": { "street": "Số 1 Đại Cồ Việt", "suite": "Phường Bạch Mai", "city": "Hà Nội" },
+    "phone": "+84 000 000 462"
+  },
+  {
+    "id": 20235455,
+    "name": "Phạm Ngọc Tuyên",
+    "username": "tuyen.pn235455",
+    "email": "tuyen.pn235455@sis.hust.edu.vn",
+    "address": { "street": "Số 1 Đại Cồ Việt", "suite": "Phường Bạch Mai", "city": "Hà Nội" },
+    "phone": "+84 000 000 751"
+  }
+]

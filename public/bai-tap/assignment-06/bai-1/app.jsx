@@ -1,4 +1,4 @@
-const API_URL = "https://jsonplaceholder.typicode.com/users";
+const USERS_URL = "users.json";
 
 function emptyUser() {
   return {
@@ -207,7 +207,7 @@ function ResultTable({ keyword, user, onAdded }) {
     setError("");
     const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch(API_URL, { signal: controller.signal });
+      const response = await fetch(USERS_URL, { signal: controller.signal });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (!Array.isArray(data) || !data.every(person => typeof person.id === "number" && typeof person.name === "string" && typeof person.username === "string")) {
@@ -219,7 +219,7 @@ function ResultTable({ keyword, user, onAdded }) {
       if (activeRequest.current !== controller) return;
       setError(problem.name === "AbortError"
         ? "Yêu cầu tải dữ liệu đã hết thời gian chờ. Bạn có thể thử lại."
-        : "Chưa tải được dữ liệu từ JSONPlaceholder. Kiểm tra kết nối rồi thử lại.");
+        : "Chưa tải được danh sách sinh viên. Kiểm tra kết nối rồi thử lại.");
     } finally {
       window.clearTimeout(timeout);
       if (activeRequest.current === controller) setLoading(false);
@@ -233,7 +233,7 @@ function ResultTable({ keyword, user, onAdded }) {
 
   React.useEffect(() => {
     if (user) {
-      // Namespace riêng tránh trùng ID từ API và không dùng lại ID đã xóa.
+      // Tách mã người dùng mới khỏi MSSV trong danh sách ban đầu.
       const added = { ...copyUser(user), id: `local-${nextLocalId.current++}` };
       setUsers(previous => [...previous, added]);
       setNotice(`Đã thêm ${added.name}. Bộ lọc tìm kiếm hiện tại vẫn được giữ.`);
@@ -267,11 +267,11 @@ function ResultTable({ keyword, user, onAdded }) {
     <>
       <div className="table-heading">
         <div><h2 id="directory-title">Danh sách người dùng</h2><p id="result-count" role="status">{loading ? "Đang tải danh sách…" : `Đang hiển thị ${filteredUsers.length}/${users.length} người dùng`}</p></div>
-        <span className="source-badge"><span aria-hidden="true"></span>JSONPlaceholder</span>
+        <span className="source-badge"><span aria-hidden="true"></span>Danh sách sinh viên</span>
       </div>
       <p className="notice" role="status" aria-live="polite">{notice}</p>
       {error && <div className="fetch-error" role="alert"><p>{error}</p><button className="button button-secondary" type="button" onClick={() => loadUsers()}>Thử tải lại</button></div>}
-      {loading && <div className="loading-panel" role="status"><span className="loading-dot" aria-hidden="true"></span>Đang tải dữ liệu từ JSONPlaceholder…</div>}
+      {loading && <div className="loading-panel" role="status"><span className="loading-dot" aria-hidden="true"></span>Đang tải danh sách sinh viên…</div>}
       {!loading && users.length === 0 && !error && <div className="empty-state"><h3>Danh sách đang trống</h3><p>Thêm người dùng để bắt đầu.</p></div>}
       {!loading && users.length > 0 && filteredUsers.length === 0 && <div className="empty-state"><h3>Không tìm thấy người dùng</h3><p>Thử một tên khác hoặc xóa từ khóa tìm kiếm.</p></div>}
       {filteredUsers.length > 0 && <>

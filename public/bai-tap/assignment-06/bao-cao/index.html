@@ -58,7 +58,7 @@
             </ul>
             <figcaption>Hình 1. Cây component của bản ứng dụng đã hoàn thiện. Hai vị trí UserModal là hai lần sử dụng cùng một component.</figcaption>
           </figure>
-          <p><code>ResultTable</code> tải dữ liệu bằng Effect có mảng phụ thuộc rỗng khi component được mount. Việc sửa dùng bản sao của người dùng và <code>address</code>; chỉ khi lưu mới thay bản ghi trong <code>users</code>. Xóa tạo mảng mới bằng <code>filter</code> và thực hiện trực tiếp, đúng yêu cầu bài tập.</p>
+          <p><code>ResultTable</code> tải danh sách sinh viên từ tệp JSON bằng Effect có mảng phụ thuộc rỗng khi component được mount. Việc sửa dùng bản sao của người dùng và <code>address</code>. Bảng chỉ cập nhật khi bấm Lưu. Nút Xóa tạo mảng mới bằng <code>filter</code> và cập nhật bảng ngay.</p>
         </section>
 
         <section class="report-section" id="state-lifting" aria-labelledby="flow-heading">
@@ -129,14 +129,14 @@
             </table>
           </div>
           <h3>Cách sửa trong ứng dụng</h3>
-          <p>ResultTable dùng một ref <code>nextLocalId</code> để cấp mã <code>local-1</code>, <code>local-2</code>… cho dữ liệu mới. Các mã này khác nhóm id số do API trả về. Bộ đếm tăng độc lập với độ dài <code>users</code>, nên xóa một dòng không làm mã tiếp theo lùi lại. Ref giữ giá trị giữa các lần render trong lần chạy hiện tại.</p>
+          <p>ResultTable dùng một ref <code>nextLocalId</code> để cấp mã <code>local-1</code>, <code>local-2</code>… cho dữ liệu mới. Tiền tố này phân biệt ID mới với MSSV trong danh sách ban đầu. Bộ đếm tăng độc lập với độ dài <code>users</code>, nên xóa một dòng không làm mã tiếp theo lùi lại. Ref giữ giá trị giữa các lần render trong lần chạy hiện tại.</p>
           <pre><code>const nextLocalId = React.useRef(1);
 // Mỗi lần tiếp nhận người dùng mới:
 const added = {
   ...copyUser(user),
   id: `local-${nextLocalId.current++}`
 };</code></pre>
-          <p>Kiểm tra lại thao tác xóa rồi thêm cho mã mới khác các mã còn lại. Sửa và xóa tiếp tục xác định đúng một người dùng theo id. Các thao tác CRUD của bài tập cập nhật state trong trình duyệt; tải lại trang sẽ tải lại danh sách ban đầu từ API.</p>
+          <p>Kiểm tra lại thao tác xóa rồi thêm cho mã mới khác các mã còn lại. Sửa và xóa tiếp tục xác định đúng một người dùng theo id. Các thao tác CRUD cập nhật state trong trình duyệt. Khi tải lại trang, ứng dụng đọc lại danh sách từ tệp JSON.</p>
         </section>
 
         <div class="report-end"><p>Báo cáo đi kèm bản ứng dụng React CRUD. <a href="../bai-1/app.jsx" download>Tải mã nguồn React</a></p><a class="button" href="../bai-1/">Xem kết quả thực hành <span aria-hidden="true">→</span></a></div>
