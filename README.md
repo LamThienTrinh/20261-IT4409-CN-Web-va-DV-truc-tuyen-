@@ -23,4 +23,9 @@ Website học liệu và bài tập môn Công nghệ Web và Dịch vụ trực
   - Mỗi ví dụ: `public/bai-tap/assignment-05/bai-N/index.html` với N từ 1 đến 10.
   - Source JSX và bundle React có hướng dẫn build tại `public/bai-tap/assignment-05/react-assets/`.
 
-Các trang deploy nằm trong `public/bai-tap/assignment-01`, `assignment-02`, `assignment-03`, `assignment-04`, `asignment4-baisau` và `assignment-05`.
+- Assignment 06: ứng dụng React CRUD quản lý người dùng, tải dữ liệu mẫu từ JSONPlaceholder.
+  - Tổng quan: `public/bai-tap/assignment-06/index.html`.
+  - Ứng dụng và mã JSX: `public/bai-tap/assignment-06/bai-1/`.
+  - Báo cáo component, state lifting, props và lỗi trùng ID: `public/bai-tap/assignment-06/bao-cao/`.
+
+Các trang deploy nằm trong `public/bai-tap/`.

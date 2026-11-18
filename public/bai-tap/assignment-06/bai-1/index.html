@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ứng dụng React thực hành thêm, tìm kiếm, sửa và xóa người dùng từ JSONPlaceholder.">
+  <title>Quản lý người dùng · React CRUD · Assignment 06</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/course-home.css">
+  <link rel="stylesheet" href="app.css">
+  <script>
+    function showRuntimeError() {
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('runtime-error').hidden = false;
+        document.getElementById('root').hidden = true;
+      }, { once: true });
+    }
+  </script>
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" onerror="showRuntimeError()"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" onerror="showRuntimeError()"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone@7.26.10/babel.min.js" onerror="showRuntimeError()"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Đến nội dung chính</a>
+  <a id="course-home-link" href="/" aria-label="L — Về trang chủ IT4409" title="Về trang chủ IT4409">L</a>
+  <main id="main" class="app-shell">
+    <nav class="breadcrumbs" aria-label="Điều hướng bài thực hành">
+      <a href="/bai-tap/assignment-06/">Assignment 06</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">React CRUD</span>
+      <a class="source-link" href="app.jsx" download>Tải mã React</a>
+    </nav>
+    <div id="runtime-error" class="error-panel" role="alert" hidden>
+      <h1>Chưa tải được ứng dụng</h1>
+      <p>Không thể tải thư viện React từ CDN. Kiểm tra kết nối mạng rồi tải lại trang.</p>
+      <a href="index.html">Tải lại trang</a>
+    </div>
+    <div id="root"><p class="boot-message" role="status">Đang khởi động ứng dụng…</p></div>
+    <noscript><p class="error-panel">Bật JavaScript để chạy ứng dụng React CRUD.</p></noscript>
+    <footer class="app-footer">
+      <p>Dữ liệu ban đầu: <a href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener noreferrer">JSONPlaceholder</a>.</p>
+      <p>Các thao tác thêm, sửa, xóa chỉ áp dụng trong phiên đang mở. Tải lại trang để lấy dữ liệu gốc.</p>
+    </footer>
+  </main>
+  <script type="text/babel" data-presets="react" src="app.jsx"></script>
+</body>
+</html>

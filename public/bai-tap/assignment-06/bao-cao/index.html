@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Báo cáo React CRUD Assignment 06 môn IT4409: cây component, luồng dữ liệu, state lifting, props và xử lý lỗi trùng mã người dùng.">
+  <title>Báo cáo React CRUD · Assignment 06 · IT4409</title>
+  <link rel="icon" href="../bai-1/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Đi tới nội dung</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="L — Trang chủ IT4409"><span class="brand-mark">L</span><span>IT4409<small>Học liệu môn học</small></span></a>
+      <nav class="primary-nav" aria-label="Điều hướng Assignment 06">
+        <a href="../">Assignment 06</a>
+        <a href="../bai-1/">Ứng dụng CRUD</a>
+        <a href="./" aria-current="page">Báo cáo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Đường dẫn"><a href="/bai-tap/">Bài tập về nhà</a><span aria-hidden="true">/</span><a href="../">Assignment 06</a><span aria-hidden="true">/</span><span aria-current="page">Báo cáo</span></nav>
+        <p class="eyebrow">Assignment 06 · Báo cáo thực hành</p>
+        <h1>React CRUD quản lý người dùng</h1>
+        <p class="lead">Ứng dụng tải danh sách người dùng, tìm theo tên hoặc username, thêm, sửa và xóa ngay trên giao diện. Báo cáo trình bày cách chia component, chia sẻ state qua App và sửa lỗi trùng mã sau khi xóa rồi thêm bản ghi.</p>
+        <p class="author-line">Trịnh Thiên Lam <span aria-hidden="true">·</span> MSSV 20235359</p>
+        <div class="button-row"><a class="button" href="../bai-1/">Mở ứng dụng CRUD <span aria-hidden="true">→</span></a><a class="button button-secondary" href="../">Tổng quan Assignment 06</a></div>
+      </div>
+    </div>
+
+    <div class="container report-layout">
+      <article class="report-body" aria-label="Báo cáo React CRUD">
+        <section class="report-section" id="component-tree" aria-labelledby="tree-heading">
+          <p class="section-label">01 · Cấu trúc ứng dụng</p>
+          <h2 id="tree-heading">Cây component</h2>
+          <p><code>App</code> là cha chung của <code>SearchForm</code>, <code>AddUser</code> và <code>ResultTable</code>. Ba nhánh lần lượt nhận từ khóa, tạo dữ liệu mới và quản lý danh sách. <code>UserModal</code> là component giao diện dùng lại cho cả form thêm và form sửa.</p>
+          <figure class="diagram component-tree">
+            <div class="mount-point"><code>div#root</code><span>ReactDOM.createRoot</span></div>
+            <div class="tree-root"><strong>App</strong><span>State dùng chung: <code>kw</code>, <code>newUser</code></span></div>
+            <ul class="tree-branches">
+              <li>
+                <div class="component-node"><strong>SearchForm</strong><span>Ô tìm kiếm controlled</span><span>Nhận <code>value</code> và gọi <code>onChangeValue</code></span></div>
+              </li>
+              <li>
+                <div class="component-node"><strong>AddUser</strong><span>Giữ form nháp và trạng thái mở</span><span>Gửi dữ liệu qua <code>onAdd</code></span></div>
+                <ul class="helper-branch"><li><strong>UserModal</strong><span>Form thêm</span></li></ul>
+              </li>
+              <li>
+                <div class="component-node"><strong>ResultTable</strong><span>Giữ <code>users</code> và bản sửa <code>editing</code></span><span>Tải, lọc, sửa và xóa</span></div>
+                <ul class="helper-branch"><li><strong>UserModal</strong><span>Form sửa</span></li></ul>
+              </li>
+            </ul>
+            <figcaption>Hình 1. Cây component của bản ứng dụng đã hoàn thiện. Hai vị trí UserModal là hai lần sử dụng cùng một component.</figcaption>
+          </figure>
+          <p><code>ResultTable</code> tải dữ liệu bằng Effect có mảng phụ thuộc rỗng khi component được mount. Việc sửa dùng bản sao của người dùng và <code>address</code>; chỉ khi lưu mới thay bản ghi trong <code>users</code>. Xóa tạo mảng mới bằng <code>filter</code> và thực hiện trực tiếp, đúng yêu cầu bài tập.</p>
+        </section>
+
+        <section class="report-section" id="state-lifting" aria-labelledby="flow-heading">
+          <p class="section-label">02 · State lifting</p>
+          <h2 id="flow-heading">Luồng dữ liệu qua App</h2>
+          <p>Dữ liệu được truyền từ cha xuống con bằng props. Khi có thao tác, component con gọi callback đã nhận để yêu cầu cha cập nhật state; component con không sửa props. Hai nhánh tìm kiếm và thêm mới đi qua cùng cha <code>App</code> trước khi đến bảng.</p>
+          <figure class="diagram data-flow">
+            <h3>Luồng tìm kiếm</h3>
+            <ol class="flow-lane">
+              <li><span class="flow-kind">Nhập và gọi callback</span><strong>SearchForm</strong><code>onChangeValue(value)</code></li>
+              <li><span class="flow-kind">Cập nhật state tại cha</span><strong>App</strong><code>setKeyword(value)</code><span><code>kw</code> nhận chuỗi mới</span></li>
+              <li><span class="flow-kind">Nhận props và render</span><strong>ResultTable</strong><code>keyword={kw}</code><span>Lọc theo name hoặc username</span></li>
+            </ol>
+            <p class="flow-return"><span aria-hidden="true">↳</span> App cũng truyền <code>value={kw}</code> về SearchForm để nội dung ô nhập luôn khớp state.</p>
+            <h3>Luồng thêm người dùng</h3>
+            <ol class="flow-lane flow-lane-four">
+              <li><span class="flow-kind">Gửi form hợp lệ</span><strong>AddUser</strong><code>onAdd(data)</code><span>Dữ liệu form đã chuẩn hóa</span></li>
+              <li><span class="flow-kind">Cập nhật state tại cha</span><strong>App</strong><code>setNewUser(data)</code><span>Truyền <code>user={newUser}</code></span></li>
+              <li><span class="flow-kind">Nhận dữ liệu mới</span><strong>ResultTable</strong><span>Effect thêm bản sao vào <code>users</code></span><span>Gọi <code>onAdded()</code></span></li>
+              <li><span class="flow-kind">Xác nhận đã nhận</span><strong>App</strong><code>clearNewUser()</code><span>Đặt <code>newUser</code> về <code>null</code></span></li>
+            </ol>
+            <figcaption>Hình 2. Các bước xử lý từ thao tác ở component con, cập nhật state ở App đến bảng kết quả. Callback onAdded hoàn tất việc chuyển dữ liệu thêm mới.</figcaption>
+          </figure>
+          <h3>Vì sao kw nằm ở App</h3>
+          <p><code>SearchForm</code> nhập từ khóa nhưng <code>ResultTable</code> dùng từ khóa để lọc. Nếu <code>kw</code> chỉ nằm trong SearchForm, nhánh bảng không nhận được giá trị đó theo cấu trúc props hiện tại. Đặt state tại cha chung gần nhất giúp App truyền cùng một giá trị cho ô nhập và bảng, không cần giữ hai bản từ khóa riêng.</p>
+          <h3>Vì sao newUser nằm ở App</h3>
+          <p><code>AddUser</code> giữ <code>draft</code> cục bộ trong lúc nhập, còn danh sách <code>users</code> thuộc ResultTable. Khi form hợp lệ, App nhận dữ liệu qua <code>onAdd</code>, lưu vào <code>newUser</code> rồi chuyển sang bảng. Sau khi tiếp nhận, bảng gọi <code>onAdded</code> để xóa dữ liệu đang chờ ở App. Vì vậy, <code>newUser</code> là dữ liệu chuyển giữa hai nhánh, còn bản nháp, trạng thái mở form và lỗi nhập vẫn ở AddUser.</p>
+        </section>
+
+        <section class="report-section" id="props" aria-labelledby="props-heading">
+          <p class="section-label">03 · Giao tiếp giữa component</p>
+          <h2 id="props-heading">Các props App truyền xuống</h2>
+          <p>Bảng sau liệt kê toàn bộ props App truyền trực tiếp cho ba component con trong bản hoàn thiện. Callback <code>clearNewUser</code> được tạo bằng <code>useCallback</code>; ResultTable theo dõi <code>[user, onAdded]</code> trong Effect tiếp nhận người dùng mới.</p>
+          <div class="table-wrap" role="region" aria-label="Bảng props từ App xuống component con, có thể cuộn ngang" tabindex="0">
+            <table class="props-table">
+              <caption>Props được truyền trực tiếp trong App</caption>
+              <thead><tr><th scope="col">Component con</th><th scope="col">Prop</th><th scope="col">Giá trị từ App</th><th scope="col">Kiểu</th><th scope="col">Mục đích</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">SearchForm</th><td><code>value</code></td><td><code>kw</code></td><td>Chuỗi</td><td>Điều khiển nội dung ô tìm kiếm từ state của App.</td></tr>
+                <tr><th scope="row">SearchForm</th><td><code>onChangeValue</code></td><td><code>setKeyword</code></td><td>Hàm</td><td>Nhận chuỗi người dùng vừa nhập và cập nhật kw.</td></tr>
+                <tr><th scope="row">AddUser</th><td><code>onAdd</code></td><td><code>setNewUser</code></td><td>Hàm</td><td>Nhận dữ liệu form đã kiểm tra để chuyển sang bảng.</td></tr>
+                <tr><th scope="row">ResultTable</th><td><code>keyword</code></td><td><code>kw</code></td><td>Chuỗi</td><td>Lọc users theo name hoặc username, không phân biệt hoa thường.</td></tr>
+                <tr><th scope="row">ResultTable</th><td><code>user</code></td><td><code>newUser</code></td><td>Object hoặc null</td><td>Cung cấp dữ liệu người dùng mới; null nghĩa là không có dữ liệu đang chờ.</td></tr>
+                <tr><th scope="row">ResultTable</th><td><code>onAdded</code></td><td><code>clearNewUser</code></td><td>Hàm</td><td>Bảng gọi sau khi tiếp nhận dữ liệu để App đặt newUser về null.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <pre><code>&lt;SearchForm value={kw} onChangeValue={setKeyword} /&gt;
+&lt;AddUser onAdd={setNewUser} /&gt;
+&lt;ResultTable keyword={kw} user={newUser} onAdded={clearNewUser} /&gt;</code></pre>
+        </section>
+
+        <section class="report-section" id="loi-va-cach-sua" aria-labelledby="bug-heading">
+          <p class="section-label">04 · Lỗi và cách sửa</p>
+          <h2 id="bug-heading">Trùng id khi xóa rồi thêm</h2>
+          <p>Em tái hiện lỗi trong công thức <code>id: prev.length + 1</code> ở đoạn thêm người dùng của tài liệu hướng dẫn, trang 6. Độ dài mảng không phản ánh mã lớn nhất và không bảo đảm một mã chưa tồn tại.</p>
+          <h3>Hiện tượng và nguyên nhân</h3>
+          <p>Với danh sách có id từ 1 đến 10, xóa bản ghi id 5 làm số phần tử còn 9. Thêm bằng công thức trên tạo id 10, trùng với bản ghi id 10 vẫn còn trong bảng. Kết quả tái hiện có hai bản ghi cùng mã 10. Nếu sau đó xóa bằng điều kiện id, cả hai đều bị loại; chúng cũng tạo cùng giá trị <code>key={u.id}</code> khi render.</p>
+          <div class="table-wrap" role="region" aria-label="Kết quả tái hiện lỗi trùng id, có thể cuộn ngang" tabindex="0">
+            <table class="props-table bug-table">
+              <caption>Kết quả tái hiện với dữ liệu id từ 1 đến 10</caption>
+              <thead><tr><th scope="col">Thao tác</th><th scope="col">Dùng length cộng 1</th><th scope="col">Bản đã sửa</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Xóa id 5</th><td>Còn 9 bản ghi; id 10 vẫn tồn tại.</td><td>Còn 9 bản ghi; id 10 vẫn tồn tại.</td></tr>
+                <tr><th scope="row">Thêm bản ghi mới</th><td>Id mới là 10; có 2 bản ghi cùng id.</td><td>Id mới là <code>local-1</code>; mọi id khác nhau.</td></tr>
+                <tr><th scope="row">Xóa bản vừa thêm, rồi thêm tiếp</th><td>Mã phụ thuộc độ dài, có thể trùng hoặc được dùng lại.</td><td>Id tiếp theo là <code>local-2</code>, không dùng lại local-1.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>Cách sửa trong ứng dụng</h3>
+          <p>ResultTable dùng một ref <code>nextLocalId</code> để cấp mã <code>local-1</code>, <code>local-2</code>… cho dữ liệu mới. Các mã này khác nhóm id số do API trả về. Bộ đếm tăng độc lập với độ dài <code>users</code>, nên xóa một dòng không làm mã tiếp theo lùi lại. Ref giữ giá trị giữa các lần render trong lần chạy hiện tại.</p>
+          <pre><code>const nextLocalId = React.useRef(1);
+// Mỗi lần tiếp nhận người dùng mới:
+const added = {
+  ...copyUser(user),
+  id: `local-${nextLocalId.current++}`
+};</code></pre>
+          <p>Kiểm tra lại thao tác xóa rồi thêm cho mã mới khác các mã còn lại. Sửa và xóa tiếp tục xác định đúng một người dùng theo id. Các thao tác CRUD của bài tập cập nhật state trong trình duyệt; tải lại trang sẽ tải lại danh sách ban đầu từ API.</p>
+        </section>
+
+        <div class="report-end"><p>Báo cáo đi kèm bản ứng dụng React CRUD. <a href="../bai-1/app.jsx" download>Tải mã nguồn React</a></p><a class="button" href="../bai-1/">Xem kết quả thực hành <span aria-hidden="true">→</span></a></div>
+      </article>
+
+      <aside class="rail report-rail" aria-label="Mục lục báo cáo">
+        <strong>Trong báo cáo</strong>
+        <a href="#component-tree">01 · Cây component</a>
+        <a href="#state-lifting">02 · State lifting</a>
+        <a href="#props">03 · Bảng props</a>
+        <a href="#loi-va-cach-sua">04 · Lỗi và cách sửa</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><p>IT4409 · Trịnh Thiên Lam · 20235359</p><div class="footer-links"><a href="../">Assignment 06</a><a href="../bai-1/">Ứng dụng CRUD</a><a href="/">Trang chủ</a></div></div></footer>
+</body>
+</html>

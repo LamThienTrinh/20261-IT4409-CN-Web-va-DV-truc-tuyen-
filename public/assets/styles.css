@@ -164,6 +164,7 @@ pre code { padding: 0 !important; background: none !important; color: inherit !i
   .primary-nav { width: 100%; justify-content: space-between; }
   .primary-nav > a, .primary-nav summary { padding-inline: 8px; font-size: .82rem; }
   .nav-menu { left: 0; right: auto; }
+  .primary-nav .nav-group:last-of-type .nav-menu { left: auto; right: 0; }
   .hero { padding-block: 30px 45px; }
   .hero-copy, .hero-panel { padding: 26px; border-radius: 20px; }
   .card-grid { grid-template-columns: 1fr; }
